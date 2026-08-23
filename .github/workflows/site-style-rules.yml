@@ -13,22 +13,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Normalize punctuation and mobile cards
+      - name: Normalize site rules and navigation
         run: |
           python - <<'PY'
           from pathlib import Path
           import re
 
-          # Permanent project rule: no em dashes in site text/source.
-          for pattern in ('*.html', '*.js'):
+          # Permanent project rule: no em dashes in site source.
+          for pattern in ('*.html', '*.js', '*.css'):
               for path in Path('.').rglob(pattern):
+                  if '.git' in path.parts:
+                      continue
                   text = path.read_text(encoding='utf-8')
                   new = text.replace('—', '-')
                   if new != text:
                       path.write_text(new, encoding='utf-8')
 
-          # Remove the obsolete homepage runtime rewrite. The approved homepage
-          # copy must come from index.html and must not be overwritten by JS.
+          # Remove the obsolete homepage runtime rewrite. Approved homepage copy
+          # must come from index.html and must not be overwritten by JS.
           script_path = Path('script.js')
           script = script_path.read_text(encoding='utf-8')
           cleaned = re.sub(r"if\(!isSubPage\)\{.*?\}const priceMap=", "const priceMap=", script, count=1, flags=re.S)
@@ -41,7 +43,106 @@ jobs:
           marker = '/* full mobile task-card text */'
           if marker not in css:
               css += "\n" + marker + "\n" + "@media(max-width:640px){.task-card{height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important}.task-card p{display:block!important;overflow:visible!important;max-height:none!important;height:auto!important;white-space:normal!important;text-overflow:clip!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;-webkit-box-orient:initial!important}.task-card .task-link{position:static!important;margin-top:20px!important}}\n"
-              css_path.write_text(css, encoding='utf-8')
+
+          nav_css_marker = '/* unified site navigation */'
+          if nav_css_marker not in css:
+              css += '''\n/* unified site navigation */\n.mobile-service-menu{border:0}.mobile-service-menu summary{cursor:pointer;font-weight:700;list-style:none;padding:12px 0}.mobile-service-menu summary::-webkit-details-marker{display:none}.mobile-service-menu summary:after{content:" +"}.mobile-service-menu[open] summary:after{content:" -"}.mobile-service-links{display:grid;gap:2px;padding:0 0 8px 14px}.mobile-service-links a{padding:9px 0!important}.service-crosslink{margin-top:26px;padding:18px 20px;border:1px solid rgba(83,105,91,.22);border-radius:14px;background:rgba(239,237,229,.55)}.service-crosslink small{display:block;margin-bottom:6px;color:var(--muted);font-size:12px}.service-crosslink a{font-weight:800;color:var(--green);text-decoration:none}.service-crosslink a:hover{text-decoration:underline}@media(max-width:640px){.service-crosslink{padding:16px;margin-top:20px}}\n'''
+          css_path.write_text(css, encoding='utf-8')
+
+          # Normalize desktop and mobile headers at runtime across every page.
+          js_path = Path('script.js')
+          js = js_path.read_text(encoding='utf-8')
+          nav_js_marker = '/* unified site navigation */'
+          if nav_js_marker not in js:
+              js += r'''
+/* unified site navigation */
+(()=>{
+  const header=document.querySelector('.site-header');
+  if(!header)return;
+  const isService=document.body.classList.contains('service-page');
+  const prefix=isService?'../':'';
+  const onGithack=location.hostname.includes('githack.com');
+  const pageHref=(slug='')=>{
+    if(!slug)return onGithack?prefix+'index.html':prefix;
+    return onGithack?prefix+slug.replace(/\/$/,'/index.html'):prefix+slug;
+  };
+  const services=[
+    ['sales-department/','Система продаж с нуля'],
+    ['sales-department-improvement/','Доработка отдела продаж'],
+    ['external-rop/','Сопровождение отдела продаж (внешний РОП)'],
+    ['sales-audit/','Аудит отдела продаж'],
+    ['call-center/','Прозвон / колл-центр'],
+    ['amocrm/','Внедрение и настройка amoCRM']
+  ];
+  const nav=header.querySelector('.nav');
+  if(nav){
+    nav.innerHTML=`<div class="nav-dropdown"><button class="nav-dropbtn" type="button">Услуги ▾</button><div class="nav-dropdown-menu">${services.map(([href,label])=>`<a href="${pageHref(href)}"><strong>${label}</strong></a>`).join('')}</div></div><a href="${pageHref()}#cases">Проекты из практики</a><a href="${pageHref('prices/')}">Цены</a><a href="${pageHref()}#about">О нас</a>`;
+  }
+  const mobile=header.querySelector('.mobile-nav');
+  if(mobile){
+    mobile.innerHTML=`<details class="mobile-service-menu"><summary>Услуги</summary><div class="mobile-service-links">${services.map(([href,label])=>`<a href="${pageHref(href)}">${label}</a>`).join('')}</div></details><a href="${pageHref('prices/')}">Цены</a><a href="${pageHref()}#about">О компании</a><a href="https://t.me/olganja" target="_blank" rel="noopener noreferrer">Telegram</a>`;
+    mobile.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{mobile.hidden=true;document.querySelector('.menu-toggle')?.setAttribute('aria-expanded','false')}));
+  }
+
+  if(location.pathname.includes('/external-rop/')){
+    const start=document.querySelector('#start');
+    if(start&&!document.querySelector('.rop-improvement-crosslink')){
+      const wrap=document.createElement('div');
+      wrap.className='container rop-improvement-crosslink';
+      wrap.innerHTML=`<div class="service-crosslink"><small>Если аудит покажет, что отдел сначала нужно привести в рабочее состояние</small><a href="${pageHref('sales-department-improvement/')}">Доработка отдела продаж</a></div>`;
+      start.insertAdjacentElement('afterend',wrap);
+    }
+    const footer=document.querySelector('.footer-row');
+    if(footer&&!footer.querySelector('a[href*="prices"]')){
+      const link=document.createElement('a');
+      link.href=pageHref('prices/');
+      link.textContent='Цены';
+      footer.appendChild(link);
+    }
+  }
+})();
+'''
+              js_path.write_text(js, encoding='utf-8')
+
+          # Keep the new service in sitemap.
+          sitemap = Path('sitemap.xml')
+          if sitemap.exists():
+              sm = sitemap.read_text(encoding='utf-8')
+              url = '  <url><loc>https://services.alster-os.ru/sales-department-improvement/</loc></url>\n'
+              if 'sales-department-improvement/' not in sm:
+                  sm = sm.replace('</urlset>', url + '</urlset>')
+                  sitemap.write_text(sm, encoding='utf-8')
+
+          # Safety checks requested for the project.
+          offenders=[]
+          max_offenders=[]
+          for pattern in ('*.html','*.js','*.css'):
+              for path in Path('.').rglob(pattern):
+                  if '.git' in path.parts:
+                      continue
+                  text=path.read_text(encoding='utf-8')
+                  if '—' in text:
+                      offenders.append(str(path))
+                  if pattern in ('*.html','*.js') and re.search(r'(?<![A-Za-zА-Яа-я])MAX(?![A-Za-zА-Яа-я])', text):
+                      max_offenders.append(str(path))
+          if offenders:
+              raise SystemExit('Em dash remains in: ' + ', '.join(offenders))
+          if max_offenders:
+              raise SystemExit('MAX remains in visible/site source: ' + ', '.join(max_offenders))
+
+          # Basic CTA integrity: button-like anchors must have a non-empty href.
+          bad_cta=[]
+          for path in Path('.').rglob('*.html'):
+              if '.git' in path.parts:
+                  continue
+              text=path.read_text(encoding='utf-8')
+              for match in re.finditer(r'<a\b([^>]*class="[^"]*button[^"]*"[^>]*)>', text, flags=re.I):
+                  attrs=match.group(1)
+                  href=re.search(r'href="([^"]*)"', attrs, flags=re.I)
+                  if not href or not href.group(1).strip():
+                      bad_cta.append(str(path))
+          if bad_cta:
+              raise SystemExit('CTA without href: ' + ', '.join(sorted(set(bad_cta))))
           PY
       - name: Commit normalized files
         run: |
@@ -51,5 +152,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Apply site text rules"
+          git commit -m "Apply technical site rules"
           git push
