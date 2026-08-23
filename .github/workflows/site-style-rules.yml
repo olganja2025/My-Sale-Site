@@ -17,6 +17,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
 
           # Permanent project rule: no em dashes in site text/source.
           for pattern in ('*.html', '*.js'):
@@ -25,6 +26,14 @@ jobs:
                   new = text.replace('—', '-')
                   if new != text:
                       path.write_text(new, encoding='utf-8')
+
+          # Remove the obsolete homepage runtime rewrite. The approved homepage
+          # copy must come from index.html and must not be overwritten by JS.
+          script_path = Path('script.js')
+          script = script_path.read_text(encoding='utf-8')
+          cleaned = re.sub(r"if\(!isSubPage\)\{.*?\}const priceMap=", "const priceMap=", script, count=1, flags=re.S)
+          if cleaned != script:
+              script_path.write_text(cleaned, encoding='utf-8')
 
           # Homepage mobile task cards must always show the full approved text.
           css_path = Path('refinements.css')
