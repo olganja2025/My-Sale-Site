@@ -271,7 +271,7 @@ body.service-page.sales-system-page .system-hero .container{
   z-index:1;
 }
 body.service-page.sales-system-page .system-results-section{
-  background:#edf1e4;
+  background:#e9e8e2;
 }
 body.service-page.sales-system-page .system-result-grid article:nth-child(2),
 body.service-page.sales-system-page .system-result-grid article:nth-child(5){
@@ -289,10 +289,10 @@ body.service-page.sales-system-page .readiness-section{
   background:#e4e8e3;
 }
 body.service-page.sales-system-page .process-route-section{
-  background:radial-gradient(circle at 79% 63%,rgba(184,243,107,.22),transparent 31%),var(--bg);
+  background:var(--bg);
 }
 body.service-page.sales-system-page .hiring-section{
-  background:linear-gradient(135deg,#f8f6ef 0%,#f8f6ef 50%,#edf1e4 100%);
+  background:#e4e8e3;
 }
 body.service-page.sales-system-page .practice-case-section{
   position:relative;
