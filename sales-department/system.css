@@ -61,7 +61,7 @@ body.service-page.sales-system-page .leads-model-card{position:relative;padding:
 body.service-page.sales-system-page .leads-model-card h3{font-size:24px;color:#fff}
 body.service-page.sales-system-page .leads-model-card p{margin:12px 0 0;color:#b7c0bc;font-size:16px;line-height:1.65}
 body.service-page.sales-system-page .leads-model-break{margin-top:34px}
-body.service-page.sales-system-page .leads-note{display:block;width:fit-content;max-width:470px;margin:26px -14px -58px auto;font-size:22px;line-height:1.12;transform:rotate(-1deg)}
+body.service-page.sales-system-page .leads-note{display:block;width:fit-content;max-width:470px;margin:26px -14px -58px auto;border:1px solid rgba(184,243,107,.48);background-color:#f1f5e7;background-image:linear-gradient(rgba(83,105,91,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(83,105,91,.055) 1px,transparent 1px);background-size:18px 18px;color:var(--text);font-size:22px;line-height:1.12;transform:rotate(-1deg);box-shadow:0 14px 30px rgba(0,0,0,.18)}
 body.service-page.sales-system-page .leads-related-service{max-width:none;margin-top:72px;border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.035)}
 body.service-page.sales-system-page .leads-related-service span{color:#fff}
 body.service-page.sales-system-page .leads-related-service p{color:#b7c0bc}
