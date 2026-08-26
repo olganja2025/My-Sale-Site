@@ -54,9 +54,10 @@ jobs:
           def prefix_for(path: Path):
               return '' if path.parent == Path('.') else '../'
 
-          def desktop_nav(prefix):
+          def desktop_nav(prefix, include_cases=True):
               links = ''.join(f'<a href="{prefix}{href}"><strong>{label}</strong></a>' for href, label in services)
-              return f'<nav class="nav"><div class="nav-dropdown"><button class="nav-dropbtn" type="button">Услуги ▾</button><div class="nav-dropdown-menu">{links}</div></div><a href="{prefix}#cases">Проекты из практики</a><a href="{prefix}prices/">Цены</a><a href="{prefix}#about">О нас</a></nav>'
+              cases = f'<a href="{prefix}#cases">Проекты из практики</a>' if include_cases else ''
+              return f'<nav class="nav"><div class="nav-dropdown"><button class="nav-dropbtn" type="button">Услуги ▾</button><div class="nav-dropdown-menu">{links}</div></div>{cases}<a href="{prefix}prices/">Цены</a><a href="{prefix}#about">О нас</a></nav>'
 
           def mobile_nav(prefix):
               links = ''.join(f'<a href="{prefix}{href}">{label}</a>' for href, label in services)
@@ -74,8 +75,8 @@ jobs:
                   continue
               text = page.read_text(encoding='utf-8')
               prefix = prefix_for(page)
-              text = re.sub(r'<nav class="nav">.*?</nav>', desktop_nav(prefix), text, count=1, flags=re.S)
-              text = re.sub(r'<div class="mobile-nav"[^>]*>.*?</div>', mobile_nav(prefix), text, count=1, flags=re.S)
+              text = re.sub(r'<nav class="nav">.*?</nav>', desktop_nav(prefix, include_cases=page != Path('index.html')), text, count=1, flags=re.S)
+              text = re.sub(r'<div class="mobile-nav"[^>]*>.*?(?=</header>)', mobile_nav(prefix), text, count=1, flags=re.S)
               page.write_text(text, encoding='utf-8')
 
           # External ROP: useful path to improvement + prices in footer.
