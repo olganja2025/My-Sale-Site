@@ -167,3 +167,23 @@ body.service-page.sales-system-page .practice-review img{display:block;width:100
   body.service-page.sales-system-page .practice-review{width:100%;max-width:440px;margin:0 auto}
   body.service-page.sales-system-page .practice-review img{transform:rotate(.25deg)}
 }
+
+/* post-launch answer */
+body.service-page.sales-system-page .post-launch-answer-section{background:var(--bg)}
+body.service-page.sales-system-page .post-launch-answer-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:clamp(54px,8vw,108px);align-items:start}
+body.service-page.sales-system-page .post-launch-answer-copy h2{max-width:650px;margin-bottom:26px}
+body.service-page.sales-system-page .post-launch-answer-copy .prose{max-width:700px;margin:0 0 18px}
+body.service-page.sales-system-page .post-launch-answer-copy .prose:last-child{margin-bottom:0}
+body.service-page.sales-system-page .post-launch-answer-option{max-width:480px;padding-top:20px;border-top:2px solid var(--accent)}
+body.service-page.sales-system-page .post-launch-answer-option h3{margin:0 0 14px;font-size:25px;line-height:1.2}
+body.service-page.sales-system-page .post-launch-answer-option p{margin:0 0 24px;color:var(--muted);font-size:15px;line-height:1.6}
+body.service-page.sales-system-page .post-launch-answer-option .button{min-height:50px;text-align:center}
+@media(max-width:760px){
+  body.service-page.sales-system-page .post-launch-answer-section{padding-top:46px;padding-bottom:46px}
+  body.service-page.sales-system-page .post-launch-answer-grid{grid-template-columns:1fr;gap:32px}
+  body.service-page.sales-system-page .post-launch-answer-copy h2{margin-bottom:21px}
+  body.service-page.sales-system-page .post-launch-answer-copy .prose{margin-bottom:15px}
+  body.service-page.sales-system-page .post-launch-answer-option{max-width:none;padding-top:18px}
+  body.service-page.sales-system-page .post-launch-answer-option h3{font-size:22px}
+  body.service-page.sales-system-page .post-launch-answer-option .button{width:100%;white-space:normal}
+}
