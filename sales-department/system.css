@@ -239,3 +239,17 @@ body.service-page.sales-system-page .sales-faq-answer a{color:var(--accent-dark)
   body.service-page.sales-system-page .sales-faq-answer{padding:0 34px 19px 0}
   body.service-page.sales-system-page .sales-faq-answer p{font-size:14px;line-height:1.6}
 }
+
+/* final compact CTA */
+body.service-page.sales-system-page .final-system-cta-section{padding-top:68px;padding-bottom:68px}
+body.service-page.sales-system-page .final-system-cta-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);grid-template-areas:"title note" "button note";column-gap:clamp(52px,8vw,108px);row-gap:28px;align-items:center}
+body.service-page.sales-system-page .final-system-cta-grid>h2{grid-area:title;max-width:790px;color:#fff;font-size:clamp(42px,4.7vw,64px);line-height:1.03}
+body.service-page.sales-system-page .final-system-cta-grid>.telegram-cta{grid-area:button;justify-self:start;min-height:58px;padding-inline:30px;font-size:16px}
+body.service-page.sales-system-page .final-system-note{grid-area:note;justify-self:end;width:min(100%,330px);max-width:330px;margin:0;padding:16px 18px;border:1px solid rgba(184,243,107,.45);background-color:#d8ddd7;background-image:linear-gradient(rgba(83,105,91,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(83,105,91,.05) 1px,transparent 1px);background-size:18px 18px;color:#26342d;font-size:21px;line-height:1.08;transform:rotate(-1.6deg);box-shadow:0 12px 25px rgba(0,0,0,.12)}
+@media(max-width:760px){
+  body.service-page.sales-system-page .final-system-cta-section{padding-top:48px;padding-bottom:48px}
+  body.service-page.sales-system-page .final-system-cta-grid{grid-template-columns:1fr;grid-template-areas:"title" "button" "note";gap:24px}
+  body.service-page.sales-system-page .final-system-cta-grid>h2{font-size:34px;line-height:1.06}
+  body.service-page.sales-system-page .final-system-cta-grid>.telegram-cta{width:100%;justify-self:stretch}
+  body.service-page.sales-system-page .final-system-note{width:min(94%,330px);justify-self:end;margin:4px 3px 0 0;font-size:20px;transform:rotate(-1.3deg)}
+}
