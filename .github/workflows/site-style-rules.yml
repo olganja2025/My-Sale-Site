@@ -63,7 +63,8 @@ jobs:
           def mobile_nav(prefix, is_home=False):
               links = ''.join(f'<a href="{prefix}{href}">{label}</a>' for href, label in services)
               about = 'Обо мне' if is_home else 'О компании'
-              return f'<div class="mobile-nav" hidden><details class="mobile-service-menu"><summary>Услуги</summary><div class="mobile-service-links">{links}</div></details><a href="{prefix}prices/">Цены</a><a href="{prefix}#about">{about}</a><a href="https://t.me/olganja" target="_blank" rel="noopener noreferrer">Telegram</a></div>'
+              contact = 'Написать мне' if is_home else 'Telegram'
+              return f'<div class="mobile-nav" hidden><details class="mobile-service-menu"><summary>Услуги</summary><div class="mobile-service-links">{links}</div></details><a href="{prefix}prices/">Цены</a><a href="{prefix}#about">{about}</a><a href="https://t.me/olganja" target="_blank" rel="noopener noreferrer">{contact}</a></div>'
 
           active_pages = [
               Path('index.html'), Path('404.html'), Path('prices/index.html'),
