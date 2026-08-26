@@ -211,3 +211,31 @@ body.service-page.sales-system-page .pricing-cta{grid-area:cta;justify-self:star
   body.service-page.sales-system-page .pricing-extra{font-size:13px}
   body.service-page.sales-system-page .pricing-cta{width:100%;margin-top:3px}
 }
+
+/* service FAQ */
+body.service-page.sales-system-page .sales-faq-section{padding-top:76px;padding-bottom:76px;background:#e8ece7}
+body.service-page.sales-system-page .sales-faq-layout{display:grid;grid-template-columns:minmax(220px,.42fr) minmax(0,1fr);gap:clamp(48px,8vw,112px);align-items:start}
+body.service-page.sales-system-page .sales-faq-layout>h2{position:sticky;top:116px;max-width:320px}
+body.service-page.sales-system-page .sales-faq-list{width:100%;max-width:760px}
+body.service-page.sales-system-page .sales-faq-item{border-top:1px solid rgba(21,37,31,.18)}
+body.service-page.sales-system-page .sales-faq-item:last-child{border-bottom:1px solid rgba(21,37,31,.18)}
+body.service-page.sales-system-page .sales-faq-item summary{position:relative;display:block;padding:22px 46px 22px 0;list-style:none;cursor:pointer;color:var(--text);font-size:18px;font-weight:800;line-height:1.4}
+body.service-page.sales-system-page .sales-faq-item summary::-webkit-details-marker{display:none}
+body.service-page.sales-system-page .sales-faq-item summary::after{content:"+";position:absolute;top:19px;right:2px;color:var(--accent-dark);font-size:27px;font-weight:500;line-height:1;transition:transform .22s ease}
+body.service-page.sales-system-page .sales-faq-item[open] summary::after{transform:rotate(45deg)}
+body.service-page.sales-system-page .sales-faq-answer{padding:0 46px 22px 0;animation:faq-answer-in .24s ease}
+body.service-page.sales-system-page .sales-faq-answer p{max-width:680px;margin:0 0 13px;color:var(--muted);font-size:15px;line-height:1.65}
+body.service-page.sales-system-page .sales-faq-answer p:last-child{margin-bottom:0}
+body.service-page.sales-system-page .sales-faq-answer strong{color:var(--text)}
+body.service-page.sales-system-page .sales-faq-answer a{color:var(--accent-dark);font-weight:800;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+@keyframes faq-answer-in{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:760px){
+  body.service-page.sales-system-page .sales-faq-section{padding-top:46px;padding-bottom:46px}
+  body.service-page.sales-system-page .sales-faq-layout{grid-template-columns:1fr;gap:27px}
+  body.service-page.sales-system-page .sales-faq-layout>h2{position:static;max-width:none}
+  body.service-page.sales-system-page .sales-faq-list{max-width:none}
+  body.service-page.sales-system-page .sales-faq-item summary{padding:19px 38px 19px 0;font-size:16px;line-height:1.4}
+  body.service-page.sales-system-page .sales-faq-item summary::after{top:17px;right:1px;font-size:25px}
+  body.service-page.sales-system-page .sales-faq-answer{padding:0 34px 19px 0}
+  body.service-page.sales-system-page .sales-faq-answer p{font-size:14px;line-height:1.6}
+}
