@@ -35,15 +35,15 @@ body.service-page.sales-system-page .system-related-service a:hover{background:v
 
 
 /* open readiness comparison */
-body.service-page.sales-system-page .readiness-section{padding-top:68px;padding-bottom:68px;background:#edf1e4}
+body.service-page.sales-system-page .readiness-section{padding-top:68px;padding-bottom:68px;background:#dfe7e2}
 body.service-page.sales-system-page .readiness-section .section-head{margin-bottom:30px}
 body.service-page.sales-system-page .readiness-section h2{max-width:760px}
 body.service-page.sales-system-page .readiness-open{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(54px,8vw,110px)}
 body.service-page.sales-system-page .readiness-column{min-width:0;padding:0}
 body.service-page.sales-system-page .readiness-heading{display:flex;align-items:center;gap:14px;margin-bottom:18px}
 body.service-page.sales-system-page .readiness-heading h3{margin:0;font-size:25px}
-body.service-page.sales-system-page .readiness-symbol{display:block;color:var(--accent);font-family:Caveat,cursive;font-size:62px;font-weight:600;line-height:.65;transform:rotate(-6deg) scaleX(1.12);transform-origin:center}
-body.service-page.sales-system-page .readiness-negative .readiness-symbol{font-size:70px;transform:rotate(-4deg) scaleX(1.2)}
+body.service-page.sales-system-page .readiness-symbol{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;flex:0 0 42px;color:var(--accent);font-family:Caveat,cursive;font-size:62px;font-weight:600;line-height:1;transform:translateY(-2px) rotate(-6deg) scaleX(1.12);transform-origin:center}
+body.service-page.sales-system-page .readiness-negative .readiness-symbol{font-size:70px;transform:translateY(-2px) rotate(-4deg) scaleX(1.2)}
 body.service-page.sales-system-page .readiness-criteria{display:grid;gap:15px}
 body.service-page.sales-system-page .readiness-criteria p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
 body.service-page.sales-system-page .readiness-note{display:block;width:fit-content;max-width:100%;margin:24px 0 0 18px}
