@@ -75,7 +75,7 @@ body.service-page.sales-system-page .process-route-section{
   padding-top:68px;
   padding-bottom:68px;
   background:
-    radial-gradient(ellipse at 76% 100%,rgba(184,243,107,.22),transparent 48%),
+    radial-gradient(circle at 82% 54%,rgba(184,243,107,.14),transparent 25%),
     var(--bg);
 }
 body.service-page.sales-system-page .process-route-section .section-head{margin-bottom:38px}
@@ -87,7 +87,7 @@ body.service-page.sales-system-page .process-stage-copy{padding-top:25px}
 body.service-page.sales-system-page .process-stage h3{min-height:40px;margin:0 0 12px;color:var(--text);font-size:14px;line-height:1.4;letter-spacing:.055em}
 body.service-page.sales-system-page .process-stage p{margin:0;color:var(--muted);font-size:14px;line-height:1.58}
 @media(max-width:760px){
-  body.service-page.sales-system-page .process-route-section{padding-top:46px;padding-bottom:46px;background:radial-gradient(ellipse at 78% 100%,rgba(184,243,107,.2),transparent 48%),var(--bg)}
+  body.service-page.sales-system-page .process-route-section{padding-top:46px;padding-bottom:46px;background:radial-gradient(circle at 78% 58%,rgba(184,243,107,.12),transparent 27%),var(--bg)}
   body.service-page.sales-system-page .process-route-section .section-head{margin-bottom:30px}
   body.service-page.sales-system-page .process-route{display:grid;grid-template-columns:1fr;gap:30px;padding-left:0}
   body.service-page.sales-system-page .process-route::before{top:31px;bottom:31px;left:31px;right:auto;width:2px;height:auto;background:linear-gradient(180deg,rgba(184,243,107,.35),var(--accent) 14%,var(--accent) 86%,rgba(184,243,107,.35))}
@@ -98,26 +98,28 @@ body.service-page.sales-system-page .process-stage p{margin:0;color:var(--muted)
   body.service-page.sales-system-page .process-stage p{font-size:14.5px;line-height:1.55}
 }
 
-/* hiring editorial continuation */
+/* hiring editorial section */
 body.service-page.sales-system-page .hiring-section{
-  padding-top:66px;
-  padding-bottom:66px;
-  background:
-    radial-gradient(ellipse at 76% 0%,rgba(184,243,107,.22),transparent 48%),
-    linear-gradient(180deg,var(--bg) 0%,rgba(244,241,233,.94) 58%,var(--bg) 100%);
+  padding-top:58px;
+  padding-bottom:58px;
+  background:#edf1e4;
 }
-body.service-page.sales-system-page .hiring-editorial{display:grid;grid-template-columns:minmax(0,720px) minmax(240px,360px);gap:clamp(54px,9vw,126px);align-items:center}
-body.service-page.sales-system-page .hiring-copy h2{margin-bottom:24px}
-body.service-page.sales-system-page .hiring-copy .prose{max-width:700px;margin:0 0 16px}
-body.service-page.sales-system-page .hiring-condition{max-width:680px;margin:24px 0 0;padding:16px 0 0;border-top:2px solid rgba(66,103,44,.35);color:var(--text);font-size:14px;font-weight:700;line-height:1.55}
-body.service-page.sales-system-page .hiring-note{width:min(100%,310px);margin:8px 0 0;padding:18px 20px;justify-self:start;border:1px solid rgba(184,243,107,.46);background-color:#f1f5e7;background-image:linear-gradient(rgba(83,105,91,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(83,105,91,.055) 1px,transparent 1px);background-size:18px 18px;color:var(--text);font-size:22px;line-height:1.12;transform:rotate(-1.6deg);box-shadow:0 14px 30px rgba(21,37,31,.12)}
+body.service-page.sales-system-page .hiring-editorial{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:clamp(48px,7vw,96px);row-gap:18px;align-items:start}
+body.service-page.sales-system-page .hiring-lead h2{max-width:620px;margin-bottom:24px}
+body.service-page.sales-system-page .hiring-lead .prose{max-width:620px;margin:0}
+body.service-page.sales-system-page .hiring-details{padding-top:8px}
+body.service-page.sales-system-page .hiring-details .prose{max-width:590px;margin:0 0 17px}
+body.service-page.sales-system-page .hiring-condition{max-width:590px;margin:23px 0 0;padding:16px 0 0;border-top:2px solid rgba(66,103,44,.35);color:var(--text);font-size:14px;font-weight:700;line-height:1.55}
+body.service-page.sales-system-page .hiring-note{grid-column:1/-1;width:min(100%,310px);margin:-5px 0 -8px;padding:18px 20px;justify-self:center;border:1px solid rgba(184,243,107,.46);background-color:#f1f5e7;background-image:linear-gradient(rgba(83,105,91,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(83,105,91,.055) 1px,transparent 1px);background-size:18px 18px;color:var(--text);font-size:22px;line-height:1.12;transform:translateX(8%) rotate(-1.8deg);box-shadow:0 14px 30px rgba(21,37,31,.12)}
 @media(max-width:760px){
-  body.service-page.sales-system-page .hiring-section{padding-top:44px;padding-bottom:46px;background:radial-gradient(ellipse at 78% 0%,rgba(184,243,107,.2),transparent 42%),linear-gradient(180deg,var(--bg) 0%,rgba(244,241,233,.96) 62%,var(--bg) 100%)}
-  body.service-page.sales-system-page .hiring-editorial{grid-template-columns:1fr;gap:30px}
-  body.service-page.sales-system-page .hiring-copy h2{margin-bottom:20px}
-  body.service-page.sales-system-page .hiring-copy .prose{margin-bottom:14px}
+  body.service-page.sales-system-page .hiring-section{padding-top:44px;padding-bottom:46px;background:#edf1e4}
+  body.service-page.sales-system-page .hiring-editorial{grid-template-columns:1fr;gap:0}
+  body.service-page.sales-system-page .hiring-lead h2{margin-bottom:20px}
+  body.service-page.sales-system-page .hiring-lead .prose{margin-bottom:14px}
+  body.service-page.sales-system-page .hiring-details{padding-top:0}
+  body.service-page.sales-system-page .hiring-details .prose{margin-bottom:14px}
   body.service-page.sales-system-page .hiring-condition{margin-top:21px;padding-top:14px}
-  body.service-page.sales-system-page .hiring-note{width:min(90%,310px);margin:0 8px 2px auto;justify-self:end;font-size:21px}
+  body.service-page.sales-system-page .hiring-note{grid-column:1;width:min(90%,310px);margin:28px 8px 2px auto;justify-self:end;font-size:21px;transform:rotate(-1.5deg)}
 }
 
 /* editorial practice case */
