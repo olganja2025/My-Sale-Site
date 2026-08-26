@@ -57,11 +57,13 @@ jobs:
           def desktop_nav(prefix, include_cases=True):
               links = ''.join(f'<a href="{prefix}{href}"><strong>{label}</strong></a>' for href, label in services)
               cases = f'<a href="{prefix}#cases">Проекты из практики</a>' if include_cases else ''
-              return f'<nav class="nav"><div class="nav-dropdown"><button class="nav-dropbtn" type="button">Услуги ▾</button><div class="nav-dropdown-menu">{links}</div></div>{cases}<a href="{prefix}prices/">Цены</a><a href="{prefix}#about">О нас</a></nav>'
+              about = 'Обо мне' if not include_cases else 'О нас'
+              return f'<nav class="nav"><div class="nav-dropdown"><button class="nav-dropbtn" type="button">Услуги ▾</button><div class="nav-dropdown-menu">{links}</div></div>{cases}<a href="{prefix}prices/">Цены</a><a href="{prefix}#about">{about}</a></nav>'
 
-          def mobile_nav(prefix):
+          def mobile_nav(prefix, is_home=False):
               links = ''.join(f'<a href="{prefix}{href}">{label}</a>' for href, label in services)
-              return f'<div class="mobile-nav" hidden><details class="mobile-service-menu"><summary>Услуги</summary><div class="mobile-service-links">{links}</div></details><a href="{prefix}prices/">Цены</a><a href="{prefix}#about">О компании</a><a href="https://t.me/olganja" target="_blank" rel="noopener noreferrer">Telegram</a></div>'
+              about = 'Обо мне' if is_home else 'О компании'
+              return f'<div class="mobile-nav" hidden><details class="mobile-service-menu"><summary>Услуги</summary><div class="mobile-service-links">{links}</div></details><a href="{prefix}prices/">Цены</a><a href="{prefix}#about">{about}</a><a href="https://t.me/olganja" target="_blank" rel="noopener noreferrer">Telegram</a></div>'
 
           active_pages = [
               Path('index.html'), Path('404.html'), Path('prices/index.html'),
@@ -76,7 +78,7 @@ jobs:
               text = page.read_text(encoding='utf-8')
               prefix = prefix_for(page)
               text = re.sub(r'<nav class="nav">.*?</nav>', desktop_nav(prefix, include_cases=page != Path('index.html')), text, count=1, flags=re.S)
-              text = re.sub(r'<div class="mobile-nav"[^>]*>.*?(?=</header>)', mobile_nav(prefix), text, count=1, flags=re.S)
+              text = re.sub(r'<div class="mobile-nav"[^>]*>.*?(?=</header>)', mobile_nav(prefix, is_home=page == Path('index.html')), text, count=1, flags=re.S)
               page.write_text(text, encoding='utf-8')
 
           # External ROP: useful path to improvement + prices in footer.
