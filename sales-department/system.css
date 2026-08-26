@@ -256,10 +256,29 @@ body.service-page.sales-system-page .final-system-note{grid-area:note;justify-se
 
 /* final whole-page visual direction */
 body.service-page.sales-system-page .system-hero{
-  background:radial-gradient(circle at 82% 20%,rgba(184,243,107,.12),transparent 29%),var(--bg);
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(90deg,var(--bg) 0%,var(--bg) 72%,#edf1e4 72%,#edf1e4 100%);
+}
+body.service-page.sales-system-page .system-hero::after{
+  content:"";
+  position:absolute;
+  top:74px;
+  right:8%;
+  width:168px;
+  height:250px;
+  border:1px solid rgba(66,103,44,.2);
+  border-radius:84px 84px 30px 30px;
+  background:linear-gradient(155deg,rgba(184,243,107,.55),rgba(184,243,107,.08));
+  transform:rotate(7deg);
+  pointer-events:none;
+}
+body.service-page.sales-system-page .system-hero .container{
+  position:relative;
+  z-index:1;
 }
 body.service-page.sales-system-page .system-results-section{
-  background:linear-gradient(180deg,#edf1e4 0%,#e9eee4 100%);
+  background:#edf1e4;
 }
 body.service-page.sales-system-page .system-result-grid article:nth-child(2),
 body.service-page.sales-system-page .system-result-grid article:nth-child(5){
@@ -268,26 +287,26 @@ body.service-page.sales-system-page .system-result-grid article:nth-child(5){
 body.service-page.sales-system-page .system-result-summary{
   box-shadow:8px 8px 0 color-mix(in srgb,var(--accent) 28%,transparent);
 }
+body.service-page.sales-system-page .system-result-grid article:first-child,
+body.service-page.sales-system-page .system-result-grid article:last-child{
+  border-top:4px solid var(--accent);
+}
+body.service-page.sales-system-page .readiness-section{
+  background:#e4e8e3;
+}
 body.service-page.sales-system-page .process-route-section{
-  background:radial-gradient(circle at 79% 63%,rgba(184,243,107,.14),transparent 27%),var(--bg);
+  background:radial-gradient(circle at 79% 63%,rgba(184,243,107,.22),transparent 31%),var(--bg);
 }
 body.service-page.sales-system-page .hiring-section{
-  background:linear-gradient(180deg,#edf1e4 0%,#f1f3e9 100%);
+  background:linear-gradient(135deg,#f8f6ef 0%,#f8f6ef 50%,#edf1e4 100%);
 }
 body.service-page.sales-system-page .practice-case-section{
   position:relative;
   overflow:hidden;
-  background:var(--bg);
+  background:#edf1e4;
 }
 body.service-page.sales-system-page .practice-case-section::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:50%;
-  width:min(1180px,calc(100% - 44px));
-  height:1px;
-  transform:translateX(-50%);
-  background:linear-gradient(90deg,var(--accent),rgba(184,243,107,0) 52%);
+  content:none;
 }
 body.service-page.sales-system-page .practice-case{
   position:relative;
@@ -303,13 +322,20 @@ body.service-page.sales-system-page .practice-case-header .case-meta{
   max-width:360px;
 }
 body.service-page.sales-system-page .post-launch-answer-section{
-  background:#e8ece7;
+  background:#e4e8e3;
 }
 body.service-page.sales-system-page .pricing-summary-section{
-  background:radial-gradient(circle at 82% 18%,rgba(184,243,107,.13),transparent 31%),#edf1e4;
+  background:var(--bg);
+}
+body.service-page.sales-system-page .pricing-main{
+  padding:24px 28px;
+  border-left:4px solid var(--accent);
+  border-radius:0 22px 22px 0;
+  background:#fff;
+  box-shadow:9px 9px 0 color-mix(in srgb,var(--accent) 38%,transparent);
 }
 body.service-page.sales-system-page .sales-faq-section{
-  background:linear-gradient(180deg,#e8ece7 0%,#e4e9e5 100%);
+  background:#e9e8e2;
 }
 body.service-page.sales-system-page .note-inline{
   transform:rotate(-1.3deg);
@@ -322,6 +348,29 @@ body.service-page.sales-system-page .system-related-service a{
 }
 body.service-page.sales-system-page .system-related-service a:hover{
   transform:translateY(-1px);
+}
+body.service-page.sales-system-page .ruble-symbol{
+  font-family:Arial,"Helvetica Neue",sans-serif;
+  font-weight:700;
+  font-style:normal;
+  letter-spacing:0;
+}
+body.service-page.sales-system-page .final-system-cta-grid{
+  width:min(100%,980px);
+  margin:0 auto;
+  grid-template-columns:auto minmax(250px,320px);
+  grid-template-areas:"title title" "button note";
+  column-gap:34px;
+  row-gap:26px;
+  justify-content:start;
+  align-items:center;
+}
+body.service-page.sales-system-page .final-system-cta-grid>h2{
+  max-width:900px;
+}
+body.service-page.sales-system-page .final-system-note{
+  justify-self:start;
+  margin-left:4px;
 }
 
 @media(max-width:980px){
@@ -337,6 +386,12 @@ body.service-page.sales-system-page .system-related-service a:hover{
 }
 
 @media(max-width:700px){
+  body.service-page.sales-system-page .system-hero{
+    background:radial-gradient(circle at 90% 8%,rgba(184,243,107,.2),transparent 28%),var(--bg);
+  }
+  body.service-page.sales-system-page .system-hero::after{
+    display:none;
+  }
   body.service-page.sales-system-page .system-result-grid article:nth-child(2),
   body.service-page.sales-system-page .system-result-grid article:nth-child(5){
     transform:none;
@@ -345,15 +400,26 @@ body.service-page.sales-system-page .system-related-service a:hover{
     box-shadow:6px 6px 0 color-mix(in srgb,var(--accent) 25%,transparent);
   }
   body.service-page.sales-system-page .practice-case-section{
-    background:var(--bg);
-  }
-  body.service-page.sales-system-page .practice-case-section::before{
-    width:calc(100% - 28px);
+    background:#edf1e4;
   }
   body.service-page.sales-system-page .practice-case-header .case-meta{
     margin-top:18px;
   }
   body.service-page.sales-system-page .leads-note{
     transform:rotate(-1.5deg);
+  }
+  body.service-page.sales-system-page .pricing-main{
+    padding:20px 18px;
+    box-shadow:6px 6px 0 color-mix(in srgb,var(--accent) 34%,transparent);
+  }
+  body.service-page.sales-system-page .final-system-cta-grid{
+    width:100%;
+    grid-template-columns:1fr;
+    grid-template-areas:"title" "button" "note";
+    gap:24px;
+  }
+  body.service-page.sales-system-page .final-system-note{
+    justify-self:start;
+    margin:2px 0 0 10px;
   }
 }
