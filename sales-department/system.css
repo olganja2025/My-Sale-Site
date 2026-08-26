@@ -126,45 +126,45 @@ body.service-page.sales-system-page .hiring-note{grid-column:1/-1;width:min(100%
 body.service-page.sales-system-page .practice-case-section{
   padding-top:66px;
   padding-bottom:66px;
-  background:radial-gradient(ellipse at 84% 46%,rgba(184,243,107,.14),transparent 32%),var(--bg);
+  background:#edf1e4;
 }
-body.service-page.sales-system-page .practice-case{padding-top:28px;border-top:3px solid var(--accent)}
-body.service-page.sales-system-page .practice-case-header{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,.6fr);gap:42px;align-items:end}
+body.service-page.sales-system-page .practice-case{padding-top:0}
+body.service-page.sales-system-page .practice-case-header{display:grid;grid-template-columns:minmax(0,1fr);gap:0;align-items:start}
 body.service-page.sales-system-page .practice-case-header .case-kicker{margin-bottom:16px;color:var(--accent-dark)}
 body.service-page.sales-system-page .practice-case-header .eyebrow{margin-bottom:12px}
 body.service-page.sales-system-page .practice-case-header h2{max-width:760px;margin:0;font-size:clamp(34px,4vw,52px);line-height:1.05}
-body.service-page.sales-system-page .practice-case-header .case-meta{justify-content:flex-end;padding-bottom:4px}
+body.service-page.sales-system-page .practice-case-header .case-meta{justify-content:flex-start;margin-top:18px;padding:0}
 body.service-page.sales-system-page .practice-case-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(330px,.72fr);gap:clamp(46px,7vw,92px);align-items:start;margin-top:44px}
 body.service-page.sales-system-page .practice-case-story{min-width:0}
 body.service-page.sales-system-page .practice-stage{display:grid;grid-template-columns:126px minmax(0,1fr);gap:26px;padding:22px 0;border-top:1px solid var(--line)}
-body.service-page.sales-system-page .practice-stage:first-child{padding-top:0;border-top:0}
+body.service-page.sales-system-page .practice-stage:first-child{margin-bottom:4px;padding:18px 0 18px 16px;border-top:0;border-left:2px solid rgba(21,37,31,.22);background:linear-gradient(90deg,rgba(21,37,31,.045),transparent 76%)}
 body.service-page.sales-system-page .practice-stage>span{padding-top:3px;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.09em}
 body.service-page.sales-system-page .practice-stage p{margin:0;color:var(--muted);font-size:15px;line-height:1.65}
-body.service-page.sales-system-page .practice-stage-result{position:relative;margin-top:4px;padding-left:18px;border-left:3px solid var(--accent)}
+body.service-page.sales-system-page .practice-stage-result{position:relative;margin-top:4px;padding-left:18px;border-left:3px solid var(--accent);background:linear-gradient(90deg,rgba(184,243,107,.18),transparent 82%)}
 body.service-page.sales-system-page .practice-stage-result>span{color:var(--accent-dark)}
 body.service-page.sales-system-page .practice-stage-result p{color:var(--text);font-weight:600}
 body.service-page.sales-system-page .practice-review{position:relative;margin:0;padding:0;isolation:isolate}
-body.service-page.sales-system-page .practice-review::before{content:"";position:absolute;z-index:-1;inset:8% -8% 5%;border-radius:50%;background:rgba(184,243,107,.2);filter:blur(34px)}
-body.service-page.sales-system-page .practice-review img{display:block;width:100%;height:auto;transform:rotate(1deg);box-shadow:0 22px 52px rgba(21,37,31,.2)}
+body.service-page.sales-system-page .practice-review::before{content:"";position:absolute;z-index:-1;inset:4% -12% -2%;border-radius:44%;background:rgba(184,243,107,.18);filter:blur(48px)}
+body.service-page.sales-system-page .practice-review img{display:block;width:100%;height:auto;transform:rotate(.65deg);box-shadow:0 25px 60px rgba(111,191,37,.16),0 14px 36px rgba(21,37,31,.16)}
 @media(max-width:980px){
-  body.service-page.sales-system-page .practice-case-header{grid-template-columns:1fr;gap:22px}
-  body.service-page.sales-system-page .practice-case-header .case-meta{justify-content:flex-start;padding-bottom:0}
   body.service-page.sales-system-page .practice-case-layout{grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:38px}
   body.service-page.sales-system-page .practice-stage{grid-template-columns:104px minmax(0,1fr);gap:20px}
 }
 @media(max-width:700px){
-  body.service-page.sales-system-page .practice-case-section{padding-top:46px;padding-bottom:46px;background:radial-gradient(ellipse at 72% 78%,rgba(184,243,107,.12),transparent 30%),var(--bg)}
-  body.service-page.sales-system-page .practice-case{padding-top:22px}
-  body.service-page.sales-system-page .practice-case-header{gap:18px}
+  body.service-page.sales-system-page .practice-case-section{padding-top:46px;padding-bottom:46px;background:#edf1e4}
+  body.service-page.sales-system-page .practice-case{padding-top:0}
+  body.service-page.sales-system-page .practice-case-header{gap:0}
   body.service-page.sales-system-page .practice-case-header .case-kicker{margin-bottom:13px}
   body.service-page.sales-system-page .practice-case-header h2{font-size:32px;line-height:1.08}
   body.service-page.sales-system-page .practice-case-header .case-meta{gap:7px}
   body.service-page.sales-system-page .practice-case-header .case-meta span{font-size:11px;padding:6px 8px}
   body.service-page.sales-system-page .practice-case-layout{grid-template-columns:1fr;gap:34px;margin-top:32px}
   body.service-page.sales-system-page .practice-stage{display:block;padding:19px 0}
+  body.service-page.sales-system-page .practice-stage:first-child{padding:16px 0 16px 13px}
   body.service-page.sales-system-page .practice-stage>span{display:block;margin-bottom:8px;padding:0}
   body.service-page.sales-system-page .practice-stage p{font-size:14.5px;line-height:1.62}
-  body.service-page.sales-system-page .practice-stage-result{margin-top:3px;padding:19px 0 0 15px}
+  body.service-page.sales-system-page .practice-stage-result{margin-top:3px;padding:19px 0 19px 15px}
   body.service-page.sales-system-page .practice-review{width:100%;max-width:440px;margin:0 auto}
-  body.service-page.sales-system-page .practice-review img{transform:rotate(.6deg)}
+  body.service-page.sales-system-page .practice-review::before{inset:5% -5% 0;filter:blur(36px)}
+  body.service-page.sales-system-page .practice-review img{transform:rotate(.25deg)}
 }
