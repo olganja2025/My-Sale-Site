@@ -169,12 +169,12 @@ body.service-page.sales-system-page .practice-review img{display:block;width:100
 }
 
 /* post-launch answer */
-body.service-page.sales-system-page .post-launch-answer-section{background:var(--bg)}
-body.service-page.sales-system-page .post-launch-answer-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:clamp(54px,8vw,108px);align-items:start}
+body.service-page.sales-system-page .post-launch-answer-section{padding-top:72px;padding-bottom:72px;background:#e8ece7}
+body.service-page.sales-system-page .post-launch-answer-grid{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(300px,.78fr);gap:clamp(42px,6vw,78px);align-items:center}
 body.service-page.sales-system-page .post-launch-answer-copy h2{max-width:650px;margin-bottom:26px}
 body.service-page.sales-system-page .post-launch-answer-copy .prose{max-width:700px;margin:0 0 18px}
 body.service-page.sales-system-page .post-launch-answer-copy .prose:last-child{margin-bottom:0}
-body.service-page.sales-system-page .post-launch-answer-option{max-width:480px;padding-top:20px;border-top:2px solid var(--accent)}
+body.service-page.sales-system-page .post-launch-answer-option{max-width:450px;padding:27px 29px;border-radius:22px;background:#f8f6ef;box-shadow:7px 7px 0 color-mix(in srgb,var(--accent) 38%,transparent)}
 body.service-page.sales-system-page .post-launch-answer-option h3{margin:0 0 14px;font-size:25px;line-height:1.2}
 body.service-page.sales-system-page .post-launch-answer-option p{margin:0 0 24px;color:var(--muted);font-size:15px;line-height:1.6}
 body.service-page.sales-system-page .post-launch-answer-option .button{min-height:50px;text-align:center}
@@ -183,18 +183,18 @@ body.service-page.sales-system-page .post-launch-answer-option .button{min-heigh
   body.service-page.sales-system-page .post-launch-answer-grid{grid-template-columns:1fr;gap:32px}
   body.service-page.sales-system-page .post-launch-answer-copy h2{margin-bottom:21px}
   body.service-page.sales-system-page .post-launch-answer-copy .prose{margin-bottom:15px}
-  body.service-page.sales-system-page .post-launch-answer-option{max-width:none;padding-top:18px}
+  body.service-page.sales-system-page .post-launch-answer-option{max-width:none;padding:22px 20px;box-shadow:6px 6px 0 color-mix(in srgb,var(--accent) 38%,transparent)}
   body.service-page.sales-system-page .post-launch-answer-option h3{font-size:22px}
   body.service-page.sales-system-page .post-launch-answer-option .button{width:100%;white-space:normal}
 }
 
 /* concise pricing summary */
-body.service-page.sales-system-page .pricing-summary-section{padding-top:72px;padding-bottom:72px}
+body.service-page.sales-system-page .pricing-summary-section{padding-top:72px;padding-bottom:72px;background:#edf1e4}
 body.service-page.sales-system-page .pricing-summary{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr);grid-template-areas:"title main" "explanation term" ". extra" ". cta";column-gap:clamp(54px,8vw,110px);row-gap:22px;align-items:start}
 body.service-page.sales-system-page .pricing-summary-title{grid-area:title;max-width:650px}
 body.service-page.sales-system-page .pricing-main{grid-area:main;display:flex;align-items:baseline;gap:12px;min-width:0;padding-top:5px;white-space:nowrap;color:var(--text)}
-body.service-page.sales-system-page .pricing-main strong{font-size:clamp(42px,4.8vw,60px);line-height:1;letter-spacing:-.06em}
-body.service-page.sales-system-page .pricing-main span{font-size:23px;font-weight:800;line-height:1.1}
+body.service-page.sales-system-page .pricing-main strong{font-size:clamp(46px,5.2vw,66px);line-height:1;letter-spacing:-.06em}
+body.service-page.sales-system-page .pricing-main span{font-size:24px;font-weight:800;line-height:1.1}
 body.service-page.sales-system-page .pricing-term{grid-area:term;padding-top:18px;border-top:1px solid var(--line);font-size:18px;line-height:1.45;color:var(--muted)}
 body.service-page.sales-system-page .pricing-term strong{color:var(--text)}
 body.service-page.sales-system-page .pricing-explanation{grid-area:explanation;max-width:570px;margin:0;color:var(--muted);font-size:17px;line-height:1.65}
