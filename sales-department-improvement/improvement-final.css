@@ -68,6 +68,14 @@
   transform:rotate(-1deg);
   box-shadow:0 10px 22px rgba(21,37,31,.1);
 }
+.sales-improvement-page .project-scope .scope-note{
+  margin:16px 0 0;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  font-size:12.5px;
+  line-height:1.55;
+  color:var(--muted);
+}
 
 @media(max-width:680px){
   .sales-improvement-page main>.hero{
