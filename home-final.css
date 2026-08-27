@@ -43,10 +43,16 @@
 }
 
 @media(max-width:640px){
+  .task-grid{
+    grid-auto-rows:auto;
+    align-items:start;
+  }
   .task-card,
   .task-card:nth-child(n){
+    align-self:start;
     min-height:0!important;
     height:auto!important;
+    max-height:none!important;
     padding:21px 19px!important;
     border-radius:22px;
   }
