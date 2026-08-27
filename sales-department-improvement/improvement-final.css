@@ -16,6 +16,9 @@
   max-width:860px;
   margin-top:28px;
 }
+.sales-improvement-page main>.hero .hero-branch-links .system-related-service{
+  margin:0;
+}
 
 .sales-improvement-page #scenarios .scenario-card{
   min-height:0;
@@ -62,7 +65,6 @@
     gap:8px;
     margin-top:22px;
   }
-  .sales-improvement-page main>.hero .hero-branch-links a{padding:12px 13px}
   .sales-improvement-page #scenarios .scenario-grid{align-items:start}
   .sales-improvement-page #scenarios .scenario-card{
     min-height:0;
