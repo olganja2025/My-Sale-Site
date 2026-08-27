@@ -76,6 +76,92 @@
   line-height:1.55;
   color:var(--muted);
 }
+.sales-improvement-page .practice-client-case-section{background:var(--bg)}
+.sales-improvement-page .practice-client-case-section .practice-case{
+  padding:48px 52px;
+  border-radius:34px;
+  background:#edf1e4;
+}
+.sales-improvement-page .practice-client-case-section .case-kicker{
+  margin-bottom:16px;
+  color:var(--accent-dark);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.09em;
+}
+.sales-improvement-page .practice-client-case-section h2{
+  max-width:760px;
+  font-size:clamp(34px,4vw,52px);
+  line-height:1.05;
+}
+.sales-improvement-page .practice-client-case-section .practice-case-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(330px,.72fr);
+  gap:clamp(46px,7vw,92px);
+  align-items:start;
+  margin-top:44px;
+}
+.sales-improvement-page .practice-client-case-section .practice-stage{
+  display:grid;
+  grid-template-columns:126px minmax(0,1fr);
+  gap:26px;
+  padding:22px 0;
+  border-top:1px solid var(--line);
+}
+.sales-improvement-page .practice-client-case-section .practice-stage:first-child{
+  margin-bottom:4px;
+  padding:18px 0 18px 16px;
+  border-top:0;
+  border-left:2px solid rgba(21,37,31,.22);
+  background:linear-gradient(90deg,rgba(21,37,31,.045),transparent 76%);
+}
+.sales-improvement-page .practice-client-case-section .practice-stage>span,
+.sales-improvement-page .practice-client-case-section .practice-review figcaption{
+  padding-top:3px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.09em;
+}
+.sales-improvement-page .practice-client-case-section .practice-stage-copy p{
+  margin:0 0 14px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.65;
+}
+.sales-improvement-page .practice-client-case-section .practice-stage-copy p:last-child{margin-bottom:0}
+.sales-improvement-page .practice-client-case-section .practice-stage-result{
+  position:relative;
+  margin-top:4px;
+  padding-left:18px;
+  border-left:3px solid var(--accent);
+  background:linear-gradient(90deg,rgba(184,243,107,.18),transparent 82%);
+}
+.sales-improvement-page .practice-client-case-section .practice-stage-result>span{color:var(--accent-dark)}
+.sales-improvement-page .practice-client-case-section .practice-stage-result p{
+  color:var(--text);
+  font-weight:600;
+}
+.sales-improvement-page .practice-client-case-section .practice-review{
+  margin:0;
+}
+.sales-improvement-page .practice-client-case-section .practice-review figcaption{
+  display:block;
+  margin-bottom:12px;
+}
+.sales-improvement-page .practice-client-case-section .practice-review-placeholder>div{
+  display:grid;
+  place-items:center;
+  min-height:360px;
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:rgba(255,255,255,.6);
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.55;
+  text-align:center;
+}
 
 @media(max-width:680px){
   .sales-improvement-page main>.hero{
@@ -113,5 +199,37 @@
     width:auto;
     max-width:100%;
     margin:18px 0 0;
+  }
+  .sales-improvement-page .practice-client-case-section .practice-case{
+    padding:24px 18px;
+    border-radius:24px;
+  }
+  .sales-improvement-page .practice-client-case-section .practice-case-layout{
+    grid-template-columns:1fr;
+    gap:34px;
+    margin-top:32px;
+  }
+  .sales-improvement-page .practice-client-case-section .practice-stage{
+    display:block;
+    padding:19px 0;
+  }
+  .sales-improvement-page .practice-client-case-section .practice-stage:first-child{
+    padding:16px 0 16px 13px;
+  }
+  .sales-improvement-page .practice-client-case-section .practice-stage>span{
+    display:block;
+    margin-bottom:8px;
+    padding:0;
+  }
+  .sales-improvement-page .practice-client-case-section .practice-stage-copy p{
+    font-size:14.5px;
+    line-height:1.62;
+  }
+  .sales-improvement-page .practice-client-case-section .practice-stage-result{
+    margin-top:3px;
+    padding:19px 0 19px 15px;
+  }
+  .sales-improvement-page .practice-client-case-section .practice-review-placeholder>div{
+    min-height:220px;
   }
 }
