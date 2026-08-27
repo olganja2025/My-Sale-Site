@@ -1,0 +1,142 @@
+/* Final cross-page alignment and mobile corrections */
+.task-card-static{
+  cursor:default;
+}
+.task-card-static:hover{
+  transform:none;
+  box-shadow:none;
+  border-color:transparent;
+}
+.task-card-static:hover .task-link,
+.task-card-static .task-link{
+  border-style:dashed;
+  border-color:rgba(83,105,91,.22);
+  background:transparent;
+  color:#66736d;
+  cursor:default;
+}
+
+.visual-note,
+.work-steps .work-note,
+.olga-note{
+  border:1px solid rgba(91,111,98,.28);
+  border-radius:10px;
+  background-color:#d8ddd7;
+  background-image:linear-gradient(rgba(83,105,91,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(83,105,91,.055) 1px,transparent 1px);
+  background-size:18px 18px;
+  color:#26342d;
+  box-shadow:0 12px 25px rgba(21,37,31,.12);
+}
+.visual-note{transform:rotate(-1.2deg)}
+.work-steps .work-note{transform:rotate(-.8deg)}
+.olga-note,
+.note-dark,
+.note-price,
+.note-form{transform:rotate(-1deg)}
+
+@media(hover:none){
+  .task-card:hover,
+  .service-card:hover{
+    transform:none;
+    box-shadow:none;
+  }
+}
+
+@media(max-width:640px){
+  .task-card,
+  .task-card:nth-child(n){
+    min-height:0!important;
+    height:auto!important;
+    padding:21px 19px!important;
+    border-radius:22px;
+  }
+  .task-num{
+    margin-bottom:17px;
+    font-size:26px;
+  }
+  .task-card h3{
+    font-size:24px;
+    line-height:1.12;
+  }
+  .task-card p{
+    margin:11px 0 15px!important;
+    font-size:14px;
+    line-height:1.55;
+  }
+  .task-card .task-link{
+    width:fit-content;
+    max-width:100%;
+    margin-top:14px!important;
+    padding:8px 11px;
+    font-size:12px;
+    line-height:1.3;
+  }
+  .task-card-audit{
+    margin-top:12px;
+  }
+
+  #about.compact-home{
+    padding-top:54px!important;
+    padding-bottom:58px!important;
+  }
+  #about .owner-profile{
+    gap:30px;
+  }
+  #about .owner-copy h2{
+    max-width:100%;
+    font-size:32px!important;
+    line-height:1.06;
+  }
+  #about .owner-copy p{
+    max-width:100%;
+    margin:15px 0 0;
+    font-size:15px;
+    line-height:1.58;
+  }
+  #about .alster-name-note{
+    width:100%;
+    margin-top:20px;
+    padding:12px 13px;
+    font-size:19px;
+    line-height:1.08;
+  }
+  #about .alster-name-note strong{
+    font-size:20px;
+  }
+  #about .owner-media{
+    width:min(100%,340px);
+    margin:0 auto;
+  }
+  #about .owner-photo{
+    display:block;
+    width:100%;
+    height:auto;
+    min-height:0;
+    aspect-ratio:3/4;
+    object-fit:contain;
+    object-position:center;
+    border-radius:26px;
+  }
+  #about .owner-media .owner-sign{
+    margin-top:18px;
+    padding-top:16px;
+  }
+  #about .owner-media .owner-sign strong{font-size:18px}
+  #about .owner-media .owner-sign span{font-size:12px}
+
+  .visual-note,
+  .work-steps .work-note,
+  .olga-note{
+    max-width:100%;
+    font-size:19px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal,
+  .reveal.is-visible{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+}
