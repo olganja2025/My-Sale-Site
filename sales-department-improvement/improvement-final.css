@@ -17,6 +17,25 @@
   margin-top:28px;
 }
 
+.sales-improvement-page #scenarios .scenario-card{
+  min-height:0;
+  height:auto;
+}
+.sales-improvement-page #scenarios .scenario-card p{
+  margin:0 0 12px;
+}
+.sales-improvement-page #scenarios .scenario-card p:last-of-type{
+  margin-bottom:0;
+}
+.sales-improvement-page #scenarios .scenario-card .note-inline{
+  width:fit-content;
+  max-width:330px;
+  margin:20px 0 0 auto;
+  padding:11px 14px;
+  transform:rotate(-1deg);
+  box-shadow:0 10px 22px rgba(21,37,31,.1);
+}
+
 @media(max-width:680px){
   .sales-improvement-page main>.hero{
     padding-top:42px;
@@ -44,4 +63,15 @@
     margin-top:22px;
   }
   .sales-improvement-page main>.hero .hero-branch-links a{padding:12px 13px}
+  .sales-improvement-page #scenarios .scenario-grid{align-items:start}
+  .sales-improvement-page #scenarios .scenario-card{
+    min-height:0;
+    height:auto;
+    align-self:start;
+  }
+  .sales-improvement-page #scenarios .scenario-card .note-inline{
+    width:auto;
+    max-width:100%;
+    margin:18px 0 0;
+  }
 }
