@@ -53,6 +53,10 @@
 .sales-improvement-page #scenarios .scenario-card{
   min-height:0;
   height:auto;
+  padding:18px 20px;
+}
+.sales-improvement-page #scenarios .scenario-card .scenario-num{
+  margin-bottom:12px;
 }
 .sales-improvement-page #scenarios .scenario-card p{
   margin:0 0 12px;
@@ -63,8 +67,8 @@
 .sales-improvement-page #scenarios .scenario-card .note-inline{
   width:fit-content;
   max-width:330px;
-  margin:20px 0 0 auto;
-  padding:11px 14px;
+  margin:12px 0 0 auto;
+  padding:9px 12px;
   transform:rotate(-1deg);
   box-shadow:0 10px 22px rgba(21,37,31,.1);
 }
@@ -88,6 +92,28 @@
   font-size:11px;
   font-weight:800;
   letter-spacing:.09em;
+}
+.sales-improvement-page .practice-client-case-section .practice-case-header{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:40px;
+  align-items:start;
+}
+.sales-improvement-page .practice-client-case-section .case-meta{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  align-self:end;
+  gap:8px;
+  max-width:360px;
+}
+.sales-improvement-page .practice-client-case-section .case-meta span{
+  padding:7px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#fff;
+  color:var(--muted);
+  font-size:12px;
 }
 .sales-improvement-page .practice-client-case-section h2{
   max-width:760px;
@@ -145,6 +171,12 @@
 .sales-improvement-page .practice-client-case-section .practice-review{
   margin:0;
 }
+.sales-improvement-page .practice-client-case-section .practice-case-layout:has(.practice-review-empty){
+  grid-template-columns:1fr;
+}
+.sales-improvement-page .practice-client-case-section .practice-review-empty{
+  display:none;
+}
 .sales-improvement-page .practice-client-case-section .practice-review figcaption{
   display:block;
   margin-bottom:12px;
@@ -194,6 +226,7 @@
     min-height:0;
     height:auto;
     align-self:start;
+    padding:16px;
   }
   .sales-improvement-page #scenarios .scenario-card .note-inline{
     width:auto;
@@ -203,6 +236,14 @@
   .sales-improvement-page .practice-client-case-section .practice-case{
     padding:24px 18px;
     border-radius:24px;
+  }
+  .sales-improvement-page .practice-client-case-section .practice-case-header{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .sales-improvement-page .practice-client-case-section .case-meta{
+    justify-content:flex-start;
+    margin-top:18px;
   }
   .sales-improvement-page .practice-client-case-section .practice-case-layout{
     grid-template-columns:1fr;
