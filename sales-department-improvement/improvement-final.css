@@ -148,56 +148,6 @@ body.sales-improvement-page{
 .sales-improvement-page .telegram-note{
   border-color:rgba(105,132,119,.42);
 }
-@media(min-width:981px){
-  .sales-improvement-page .site-header .nav-wrap{
-    min-height:78px;
-    gap:30px;
-  }
-  .sales-improvement-page .site-header .brand-lockup{
-    flex-direction:row;
-    align-items:center;
-    gap:9px;
-    min-width:218px;
-  }
-  .sales-improvement-page .site-header .brand-mark{
-    display:block;
-    width:54px;
-    height:40px;
-    flex:0 0 54px;
-  }
-  .sales-improvement-page .site-header .brand-mark img{
-    display:block;
-    width:100%;
-    height:100%;
-    object-fit:contain;
-  }
-  .sales-improvement-page .site-header .brand-wording{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:5px;
-    line-height:normal;
-  }
-  .sales-improvement-page .site-header .brand-wording strong{
-    font-size:25px;
-    line-height:.9;
-    letter-spacing:.08em;
-  }
-  .sales-improvement-page .site-header .brand-wording small{
-    font-size:7px;
-    line-height:1;
-    letter-spacing:.075em;
-  }
-}
-
-@media(max-width:980px){
-  .sales-improvement-page .site-header .nav-wrap{min-height:70px}
-  .sales-improvement-page .site-header .brand-lockup{min-width:142px;gap:7px}
-  .sales-improvement-page .site-header .brand-mark{width:42px;height:31px;flex-basis:42px}
-  .sales-improvement-page .site-header .brand-wording strong{font-size:21px}
-  .sales-improvement-page .site-header .brand-wording small{display:none}
-}
-
 .sales-improvement-page main>.hero{
   min-height:auto;
   align-items:flex-start;
@@ -243,15 +193,14 @@ body.sales-improvement-page{
   line-height:1.55;
   color:var(--muted);
 }
-.sales-improvement-page .implementation-section{padding-bottom:40px}
-.sales-improvement-page .practice-client-case-section{
-  padding-top:40px;
-  background:var(--bg);
-}
 .sales-improvement-page .practice-client-case-section .practice-case{
   padding:48px 52px;
   border-radius:34px;
   background:#edf1e4;
+}
+.sales-improvement-page .practice-client-case-section h2{
+  font-size:clamp(34px,4vw,52px);
+  line-height:1.05;
 }
 .sales-improvement-page .practice-client-case-section .case-kicker{
   margin-bottom:16px;
@@ -339,10 +288,6 @@ body.sales-improvement-page{
   padding:0;
   isolation:isolate;
 }
-.sales-improvement-page .practice-client-case-section .practice-review-empty{
-  display:none;
-  pointer-events:none;
-}
 .sales-improvement-page .practice-client-case-section .practice-review figcaption{
   display:block;
   margin-bottom:12px;
@@ -369,8 +314,6 @@ body.sales-improvement-page{
 }
 
 @media(max-width:680px){
-  .sales-improvement-page .implementation-section{padding-bottom:30px}
-  .sales-improvement-page .practice-client-case-section{padding-top:30px}
   .sales-improvement-page main>.hero .back-link{margin-bottom:28px}
   .sales-improvement-page main>.hero h1{
     overflow-wrap:normal;
@@ -724,4 +667,164 @@ body.sales-improvement-page{
     font-size:34px;
     line-height:1.07;
   }
+}
+
+/* Final page rhythm: the approved ALSTER system applied without new components. */
+.sales-improvement-page main>.section:not(.product-hero):not(.sales-faq-section):not(.final-system-cta-section){
+  padding-top:72px;
+  padding-bottom:72px;
+}
+.sales-improvement-page #scenarios{background:#e9e8e2}
+.sales-improvement-page .audit-section{background:var(--bg)}
+.sales-improvement-page .scope-section{background:#e4e8e3}
+.sales-improvement-page .transformation-section{background:#f8f6ef}
+.sales-improvement-page .implementation-section{background:#e9e8e2}
+.sales-improvement-page .practice-client-case-section{background:var(--bg)}
+.sales-improvement-page .section-dark{background:var(--dark)}
+.sales-improvement-page .pricing-summary-section{background:var(--bg)}
+.sales-improvement-page .sales-faq-section{background:#e9e8e2}
+
+.sales-improvement-page #scenarios .scenario-grid{
+  gap:14px;
+  align-items:stretch;
+}
+.sales-improvement-page #scenarios .scenario-card{
+  height:100%;
+  padding:22px;
+  border-radius:22px;
+}
+.sales-improvement-page #scenarios .scenario-card h3{
+  margin-bottom:10px;
+  line-height:1.18;
+}
+.sales-improvement-page #scenarios .scenario-card p{
+  font-size:14.5px;
+  line-height:1.6;
+}
+
+.sales-improvement-page .compact-audit-grid{
+  grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);
+  gap:clamp(44px,7vw,82px);
+}
+.sales-improvement-page .audit-section .prose{max-width:720px}
+.sales-improvement-page .audit-section .note-inline{
+  width:min(100%,340px);
+  margin:0 8px 0 auto;
+  justify-self:end;
+  padding:14px 17px;
+  transform:rotate(-1.2deg);
+  box-shadow:0 12px 25px rgba(21,37,31,.1);
+}
+
+.sales-improvement-page .scope-section .project-scope{gap:12px}
+.sales-improvement-page .scope-section .project-scope>div{
+  height:100%;
+  padding:22px;
+  border-radius:22px;
+}
+.sales-improvement-page .scope-section .project-scope h3{
+  margin-bottom:9px;
+  font-size:20px;
+  line-height:1.2;
+}
+.sales-improvement-page .scope-section .project-scope p{
+  font-size:14.5px;
+  line-height:1.6;
+}
+
+.sales-improvement-page .transformation-section .transformation-list{
+  max-width:1000px;
+  gap:10px;
+}
+.sales-improvement-page .transformation-section .transformation-row{
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  border-radius:22px;
+}
+.sales-improvement-page .transformation-section .transformation-row>div{
+  padding:20px 22px;
+}
+.sales-improvement-page .transformation-section .transformation-row p{
+  font-size:14.5px;
+  line-height:1.55;
+}
+
+.sales-improvement-page .implementation-section .practice-grid{
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  gap:clamp(36px,5vw,58px);
+}
+.sales-improvement-page .implementation-section .practice-card{
+  padding:26px;
+  border-radius:22px;
+}
+.sales-improvement-page .implementation-section .practice-card p{
+  font-size:14.5px;
+  line-height:1.62;
+}
+.sales-improvement-page .implementation-section .note-inline{
+  width:min(100%,330px);
+  margin-top:22px;
+}
+
+.sales-improvement-page .practice-client-case-section .practice-case{
+  padding:48px 52px;
+  border-radius:34px;
+  background:#edf1e4;
+}
+.sales-improvement-page .practice-client-case-section .practice-stage:first-child{
+  background:linear-gradient(90deg,rgba(21,37,31,.045),transparent 76%);
+}
+.sales-improvement-page .practice-client-case-section .practice-stage-result{
+  background:linear-gradient(90deg,rgba(105,132,119,.14),transparent 82%);
+}
+.sales-improvement-page .practice-client-case-section .practice-review-empty{
+  display:block;
+  min-height:360px;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.sales-improvement-page .section-dark .improvement-steps>div{
+  height:100%;
+  padding:16px;
+  border-radius:18px;
+}
+
+@media(max-width:960px){
+  .sales-improvement-page .compact-audit-grid,
+  .sales-improvement-page .implementation-section .practice-grid{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+  .sales-improvement-page .audit-section .note-inline{
+    margin:0;
+    justify-self:start;
+  }
+}
+
+@media(max-width:700px){
+  .sales-improvement-page main>.section:not(.product-hero):not(.sales-faq-section):not(.final-system-cta-section){
+    padding-top:46px;
+    padding-bottom:46px;
+  }
+  .sales-improvement-page #scenarios .scenario-card{
+    height:auto;
+    padding:17px;
+  }
+  .sales-improvement-page .scope-section .project-scope>div{padding:17px}
+  .sales-improvement-page .transformation-section .transformation-row{
+    grid-template-columns:1fr;
+  }
+  .sales-improvement-page .transformation-section .transformation-row>div{
+    padding:16px 17px;
+  }
+  .sales-improvement-page .implementation-section .practice-card{padding:18px}
+  .sales-improvement-page .practice-client-case-section .practice-case{
+    padding:24px 18px;
+    border-radius:24px;
+  }
+  .sales-improvement-page .practice-client-case-section h2{
+    font-size:32px;
+    line-height:1.08;
+  }
+  .sales-improvement-page .practice-client-case-section .practice-review-empty{display:none}
 }
