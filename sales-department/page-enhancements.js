@@ -10,13 +10,13 @@
     }
 
     const facts = document.createElement('aside');
-    facts.className = 'system-hero-facts reveal';
+    facts.className = 'system-hero-facts product-hero-facts reveal';
     facts.setAttribute('aria-label', 'Параметры проекта');
     facts.innerHTML = `
       <div><span>Срок проекта</span><strong>от 2 месяцев</strong></div>
-      <div><span>Стоимость</span><strong>от 150 000 <span class="ruble-symbol" aria-label="рублей">₽</span> / месяц</strong></div>
       <div><span>Формат</span><strong>проект веду лично</strong></div>
-      <div><span>Система</span><strong>под конкретный бизнес</strong></div>
+      <div><span>Подход</span><strong>под конкретный бизнес</strong></div>
+      <div><span>Результат</span><strong>готовый к работе отдел продаж</strong></div>
     `;
     facts.style.transitionDelay = '.1s';
 
