@@ -1,4 +1,22 @@
 /* Header alignment with the approved site-wide lockup. */
+body.sales-improvement-page{
+  --accent:#698477;
+  --accent-dark:#4d675c;
+  --dark:#20312b;
+}
+.sales-improvement-page main>.hero{background:var(--bg)}
+.sales-improvement-page .site-header .brand-wording b{color:var(--accent)}
+.sales-improvement-page .nav-dropdown-menu a:hover{background:rgba(105,132,119,.14)}
+.sales-improvement-page .button-secondary:hover,
+.sales-improvement-page .button-ghost:hover,
+.sales-improvement-page .contact-section .button-primary,
+.sales-improvement-page .contact-section .telegram-cta{
+  color:#fff;
+}
+.sales-improvement-page .note-inline,
+.sales-improvement-page .telegram-note{
+  border-color:rgba(105,132,119,.42);
+}
 @media(min-width:981px){
   .sales-improvement-page .site-header .nav-wrap{
     min-height:78px;
@@ -51,8 +69,6 @@
 
 .sales-improvement-page main>.hero{
   min-height:auto;
-  padding-top:72px;
-  padding-bottom:72px;
   align-items:flex-start;
 }
 .sales-improvement-page main>.hero .container{max-width:1180px}
@@ -153,7 +169,7 @@
   padding:18px 0 18px 16px;
   border-top:0;
   border-left:2px solid rgba(21,37,31,.22);
-  background:linear-gradient(90deg,rgba(21,37,31,.045),transparent 76%);
+  background:rgba(105,132,119,.07);
 }
 .sales-improvement-page .practice-client-case-section .practice-stage>span,
 .sales-improvement-page .practice-client-case-section .practice-review figcaption{
@@ -175,7 +191,7 @@
   margin-top:4px;
   padding-left:18px;
   border-left:3px solid var(--accent);
-  background:linear-gradient(90deg,rgba(184,243,107,.18),transparent 82%);
+  background:rgba(105,132,119,.12);
 }
 .sales-improvement-page .practice-client-case-section .practice-stage-result>span{color:var(--accent-dark)}
 .sales-improvement-page .practice-client-case-section .practice-stage-result p{
@@ -219,10 +235,6 @@
 }
 
 @media(max-width:680px){
-  .sales-improvement-page main>.hero{
-    padding-top:42px;
-    padding-bottom:48px;
-  }
   .sales-improvement-page main>.hero .back-link{margin-bottom:28px}
   .sales-improvement-page main>.hero h1{
     overflow-wrap:normal;
