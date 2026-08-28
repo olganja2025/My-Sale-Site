@@ -243,7 +243,11 @@ body.sales-improvement-page{
   line-height:1.55;
   color:var(--muted);
 }
-.sales-improvement-page .practice-client-case-section{background:var(--bg)}
+.sales-improvement-page .implementation-section{padding-bottom:40px}
+.sales-improvement-page .practice-client-case-section{
+  padding-top:40px;
+  background:var(--bg);
+}
 .sales-improvement-page .practice-client-case-section .practice-case{
   padding:48px 52px;
   border-radius:34px;
@@ -336,8 +340,7 @@ body.sales-improvement-page{
   isolation:isolate;
 }
 .sales-improvement-page .practice-client-case-section .practice-review-empty{
-  aspect-ratio:886/1155;
-  visibility:hidden;
+  display:none;
   pointer-events:none;
 }
 .sales-improvement-page .practice-client-case-section .practice-review figcaption{
@@ -366,6 +369,8 @@ body.sales-improvement-page{
 }
 
 @media(max-width:680px){
+  .sales-improvement-page .implementation-section{padding-bottom:30px}
+  .sales-improvement-page .practice-client-case-section{padding-top:30px}
   .sales-improvement-page main>.hero .back-link{margin-bottom:28px}
   .sales-improvement-page main>.hero h1{
     overflow-wrap:normal;
