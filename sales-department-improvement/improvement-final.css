@@ -440,56 +440,49 @@ body.sales-improvement-page{
   }
 }
 
-/* Pricing content uses the approved product pricing component. */
-.sales-improvement-page .pricing-summary{
-  grid-template-areas:"title cards" "guidance guidance" "oneoff oneoff";
-}
-.sales-improvement-page .pricing-cards{
-  grid-area:cards;
+/* Pricing content stays inside the approved product pricing component. */
+.sales-improvement-page .pricing-main-list{
   display:grid;
-  gap:18px;
-}
-.sales-improvement-page .pricing-cards .pricing-main{
-  grid-area:auto;
-  display:block;
+  align-items:stretch;
+  gap:0;
   white-space:normal;
+}
+.sales-improvement-page .pricing-item{
+  padding:0;
+}
+.sales-improvement-page .pricing-item+.pricing-item{
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
 }
 .sales-improvement-page .pricing-card-label,
 .sales-improvement-page .pricing-card-note{
   display:block;
 }
 .sales-improvement-page .pricing-card-label{
-  margin-bottom:12px;
+  margin-bottom:8px;
   color:var(--muted);
   font-size:11px;
   font-weight:800;
   letter-spacing:.09em;
   text-transform:uppercase;
 }
+.sales-improvement-page .pricing-item strong{
+  display:block;
+  font-size:clamp(30px,3vw,40px);
+  line-height:1.05;
+  letter-spacing:-.045em;
+}
 .sales-improvement-page .pricing-card-note{
-  margin-top:13px;
+  margin-top:8px;
   color:var(--muted);
-  font-size:14px;
+  font-size:13.5px;
   font-weight:600;
   line-height:1.5;
 }
-.sales-improvement-page .pricing-guidance{
-  grid-area:guidance;
-  max-width:none;
-  padding-top:22px;
-  border-top:1px solid var(--line);
-}
 .sales-improvement-page .pricing-one-off{
-  grid-area:oneoff;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:28px;
-  align-items:center;
-  margin-top:2px;
-  padding:20px 22px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:rgba(255,255,255,.58);
+  margin:0;
+  background:transparent;
 }
 .sales-improvement-page .pricing-one-off span{
   display:block;
@@ -503,25 +496,9 @@ body.sales-improvement-page{
   font-size:13.5px;
   line-height:1.5;
 }
-.sales-improvement-page .pricing-one-off a{
-  color:var(--text);
-  font-size:14px;
-  font-weight:800;
-  text-decoration:underline;
-  text-decoration-color:var(--accent-dark);
-  text-underline-offset:4px;
-}
-
 @media(max-width:820px){
-  .sales-improvement-page .pricing-summary{
-    grid-template-areas:"title" "cards" "guidance" "oneoff";
-  }
-  .sales-improvement-page .pricing-cards{gap:14px}
-  .sales-improvement-page .pricing-one-off{
-    grid-template-columns:1fr;
-    gap:14px;
-    padding:18px;
-  }
+  .sales-improvement-page .pricing-main-list{padding:20px 18px}
+  .sales-improvement-page .pricing-item strong{font-size:30px}
 }
 
 /* Product Hero follows the approved sales-department geometry exactly. */
