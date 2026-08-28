@@ -164,6 +164,72 @@ body.service-page{overflow-x:hidden;background:var(--bg);color:var(--text)}
 .service-page .telegram-cta:hover{background:#c6fa82}
 .service-page .footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.12);color:#aebbb5}
 
+/* Shared product Hero: visual standard is the sales-department page. */
+.service-page .product-hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.16fr) minmax(340px,.84fr);
+  gap:clamp(48px,7vw,90px);
+  align-items:center;
+}
+.service-page .product-hero-copy{min-width:0}
+.service-page .product-hero-facts{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  overflow:hidden;
+  border-radius:28px;
+  background:#26342d;
+  color:#f7f5ee;
+  box-shadow:7px 7px 0 rgba(105,132,119,.48);
+  transform:rotate(-.35deg);
+}
+.service-page .product-hero-facts>div{
+  min-height:132px;
+  padding:24px 22px;
+  border-right:1px solid rgba(255,255,255,.12);
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.service-page .product-hero-facts>div:nth-child(2n){border-right:0}
+.service-page .product-hero-facts>div:nth-last-child(-n+2){border-bottom:0}
+.service-page .product-hero-facts span{
+  display:block;
+  margin-bottom:13px;
+  color:rgba(247,245,238,.62);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.service-page .product-hero-facts strong{
+  display:block;
+  font-size:clamp(17px,1.55vw,22px);
+  line-height:1.25;
+}
+
+@media(max-width:980px){
+  .service-page .product-hero-grid{
+    grid-template-columns:1fr;
+    gap:38px;
+  }
+  .service-page .product-hero-facts{width:min(100%,680px)}
+}
+
+@media(max-width:700px){
+  .service-page .product-hero-grid{gap:30px}
+  .service-page .product-hero-facts{
+    box-shadow:7px 7px 0 var(--accent);
+    transform:none;
+  }
+  .service-page .product-hero-facts>div{
+    min-height:106px;
+    padding:18px 15px;
+  }
+  .service-page .product-hero-facts span{
+    margin-bottom:9px;
+    font-size:9px;
+  }
+  .service-page .product-hero-facts strong{font-size:15px}
+}
+
 @media(max-width:980px){
   .service-page .nav-wrap{min-height:76px}
   .service-page .brand-lockup{min-width:auto}

@@ -3,7 +3,7 @@
 
   if (heroContainer && !heroContainer.classList.contains('system-hero-grid')) {
     const copy = document.createElement('div');
-    copy.className = 'system-hero-copy reveal';
+    copy.className = 'system-hero-copy product-hero-copy reveal';
 
     while (heroContainer.firstChild) {
       copy.appendChild(heroContainer.firstChild);
@@ -13,14 +13,14 @@
     facts.className = 'system-hero-facts product-hero-facts reveal';
     facts.setAttribute('aria-label', 'Параметры проекта');
     facts.innerHTML = `
-      <div><span>Срок проекта</span><strong>от 2 месяцев</strong></div>
-      <div><span>Формат</span><strong>проект веду лично</strong></div>
-      <div><span>Подход</span><strong>под конкретный бизнес</strong></div>
-      <div><span>Результат</span><strong>готовый к работе отдел продаж</strong></div>
+      <div><span>Срок проекта</span><strong>От 2 месяцев</strong></div>
+      <div><span>Формат</span><strong>Проект веду лично</strong></div>
+      <div><span>Подход</span><strong>Под конкретный бизнес</strong></div>
+      <div><span>Результат</span><strong>Готовый к работе отдел продаж</strong></div>
     `;
     facts.style.transitionDelay = '.1s';
 
-    heroContainer.classList.add('system-hero-grid');
+    heroContainer.classList.add('system-hero-grid', 'product-hero-grid');
     heroContainer.append(copy, facts);
   }
 

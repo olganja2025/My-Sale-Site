@@ -434,3 +434,29 @@ body.sales-improvement-page{
     min-height:220px;
   }
 }
+
+/* Product Hero follows the approved sales-department geometry exactly. */
+.sales-improvement-page main>.product-hero{
+  padding-bottom:52px;
+}
+.sales-improvement-page main>.product-hero h1{
+  max-width:760px;
+  font-size:clamp(40px,3.8vw,51px);
+}
+.sales-improvement-page main>.product-hero .lead{
+  max-width:760px;
+  margin-top:22px;
+}
+.sales-improvement-page main>.product-hero .hero-copy{
+  max-width:760px;
+}
+
+@media(max-width:680px){
+  .sales-improvement-page main>.product-hero{
+    padding-bottom:34px;
+  }
+  .sales-improvement-page main>.product-hero h1{
+    font-size:34px;
+    line-height:1.07;
+  }
+}
