@@ -21,7 +21,7 @@
 
 .rop-page .rop-start-section .section-head{margin-bottom:30px}
 .rop-page .rop-start-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.rop-page .rop-start-grid>div{height:100%;padding:24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13)}
+.rop-page .rop-start-grid>div{height:100%;padding:24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .rop-page .rop-start-grid h3{font-size:22px;color:#f8f6ef}
 .rop-page .rop-start-grid p{font-size:14px;line-height:1.62;color:#c2cbc6}
 .rop-page .rop-start-footer{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:48px;align-items:start;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14)}
@@ -33,24 +33,20 @@
 .rop-page .service-crosslink.system-related-service.rop-audit-crosslink a:hover{background:var(--accent);border-color:var(--accent);color:var(--text)}
 
 .rop-page .rop-boundary-section .service-section-grid{grid-template-columns:.9fr 1.1fr;gap:64px}
-.rop-page .rop-boundary-section .note-inline{margin-top:30px}
+.rop-page .rop-boundary-section .note-inline{margin-top:24px}
 .rop-page .rop-boundary-section .note-inline{display:block;width:100%;max-width:340px}
 .rop-page .rop-boundary-copy .prose{margin:0 0 16px}
-.rop-page .rop-improvement-crosslink{margin-top:24px}
 
 .rop-page .rop-management-section{background:var(--bg)}
 .rop-page .rop-management-grid{display:grid;grid-template-columns:1fr .9fr;gap:58px;align-items:start}
 .rop-page .rop-management-grid .prose{max-width:680px}
 .rop-page .rop-team-case{background:var(--surface-2)}
-.rop-page .rop-case{box-shadow:none;border:1px solid var(--line);padding:28px}
+.rop-page .rop-case{box-shadow:none;border:1px solid var(--line);padding:28px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .rop-page .rop-case h3{font-size:28px;margin:10px 0 18px}
 .rop-page .rop-case p{color:var(--muted);font-size:15px;line-height:1.65}
 .rop-page .rop-case-result{margin-top:20px!important;padding-top:18px;border-top:1px solid var(--line);color:var(--text)!important;font-weight:800}
 
 .rop-page .rop-manager-case-section .service-section-grid{align-items:center}
-.rop-page .rop-case-dark{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.13);color:#fff}
-.rop-page .rop-case-dark p{color:#c2cbc6}
-.rop-page .rop-case-dark .rop-case-result{border-top-color:rgba(255,255,255,.14);color:#fff!important}
 
 .rop-page .rop-pricing-section{background:var(--bg)}
 .rop-page .rop-price-box{max-width:900px;padding:30px;border:1px solid rgba(21,37,31,.08);background:var(--surface-2)}
@@ -58,7 +54,6 @@
 .rop-page .rop-price-copy{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
 .rop-page .rop-price-copy p{margin:0;padding:20px 20px 0 0;color:var(--muted);font-size:14px;line-height:1.6}
 .rop-page .rop-price-copy p+p{padding-left:20px;border-left:1px solid var(--line)}
-.rop-page .rop-scale-example{max-width:900px;margin:22px 0 0;color:var(--muted);font-size:14px;line-height:1.65}
 
 .rop-page .seo-faq .faq-item{background:#fff;border-color:var(--line)}
 .rop-page .seo-faq .faq-item p{max-width:900px;color:var(--muted)}
@@ -70,7 +65,9 @@
 
 @media(hover:hover) and (pointer:fine){
   .rop-page .rop-fit-grid>div:hover,
-  .rop-page .rop-scope-grid>div:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#d7d8d3}
+  .rop-page .rop-scope-grid>div:hover,
+  .rop-page .rop-start-grid>div:hover,
+  .rop-page .rop-case:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#d7d8d3}
 }
 
 @media(max-width:980px){
