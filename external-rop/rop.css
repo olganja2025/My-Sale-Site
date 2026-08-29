@@ -31,14 +31,12 @@
 .rop-page .service-crosslink.system-related-service.rop-audit-crosslink p{max-width:720px;margin:6px 0 0;color:#c2cbc6;font-size:14px;line-height:1.55}
 .rop-page .service-crosslink.system-related-service.rop-audit-crosslink a{border-color:rgba(255,255,255,.28);color:#f8f6ef}
 .rop-page .service-crosslink.system-related-service.rop-audit-crosslink a:hover{background:var(--accent);border-color:var(--accent);color:var(--text)}
-.rop-page .rop-text-link{display:inline-block;margin-top:8px;border-bottom:1px solid currentColor;color:var(--accent-dark);font-weight:800}
-.rop-page .rop-text-link-light{color:#d7f2b2}
 
 .rop-page .rop-boundary-section .service-section-grid{grid-template-columns:.9fr 1.1fr;gap:64px}
 .rop-page .rop-boundary-section .note-inline{margin-top:30px}
 .rop-page .rop-boundary-section .note-inline{display:block;width:100%;max-width:340px}
 .rop-page .rop-boundary-copy .prose{margin:0 0 16px}
-.rop-page .rop-highlight{margin:24px 0 8px;padding:17px 19px;border-left:3px solid var(--accent-dark);background:rgba(255,255,255,.65);border-radius:0 14px 14px 0;font-weight:800}
+.rop-page .rop-improvement-crosslink{margin-top:24px}
 
 .rop-page .rop-management-section{background:var(--bg)}
 .rop-page .rop-management-grid{display:grid;grid-template-columns:1fr .9fr;gap:58px;align-items:start}
