@@ -907,7 +907,13 @@ body.sales-improvement-page{
   overflow:hidden;
   padding-top:66px;
   padding-bottom:66px;
-  background:#edf1e4;
+  background:var(--bg);
+  --accent:#b8f36b;
+  --accent-dark:#42672c;
+}
+.sales-improvement-page main>.section.practice-case-section:not(.product-hero):not(.sales-faq-section):not(.final-system-cta-section){
+  padding-top:66px;
+  padding-bottom:66px;
 }
 .sales-improvement-page .practice-case-section .practice-case{
   position:relative;
@@ -924,6 +930,11 @@ body.sales-improvement-page{
 .sales-improvement-page .practice-case-section .case-kicker{
   margin-bottom:16px;
   color:var(--accent-dark);
+  font-size:11px;
+  font-weight:800;
+  line-height:1.55;
+  letter-spacing:.09em;
+  text-transform:uppercase;
 }
 .sales-improvement-page .practice-case-section h2{
   max-width:760px;
@@ -932,10 +943,22 @@ body.sales-improvement-page{
   line-height:1.05;
 }
 .sales-improvement-page .practice-case-section .case-meta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
   justify-content:flex-end;
   align-self:end;
   margin-top:0;
   max-width:360px;
+}
+.sales-improvement-page .practice-case-section .case-meta span{
+  padding:7px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#fff;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
 }
 .sales-improvement-page .practice-case-section .practice-case-layout{
   display:grid;
@@ -976,7 +999,7 @@ body.sales-improvement-page{
   margin-top:4px;
   padding-left:18px;
   border-left:3px solid var(--accent);
-  background:linear-gradient(90deg,rgba(105,132,119,.14),transparent 82%);
+  background:linear-gradient(90deg,rgba(184,243,107,.18),transparent 82%);
 }
 .sales-improvement-page .practice-case-section .practice-stage-result>span{color:var(--accent-dark)}
 .sales-improvement-page .practice-case-section .practice-stage-result p{
@@ -1052,6 +1075,10 @@ body.sales-improvement-page{
     margin:20px 0 -5px;
   }
   .sales-improvement-page .practice-case-section{
+    padding-top:46px;
+    padding-bottom:46px;
+  }
+  .sales-improvement-page main>.section.practice-case-section:not(.product-hero):not(.sales-faq-section):not(.final-system-cta-section){
     padding-top:46px;
     padding-bottom:46px;
   }
