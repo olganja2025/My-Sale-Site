@@ -828,3 +828,275 @@ body.sales-improvement-page{
   }
   .sales-improvement-page .practice-client-case-section .practice-review-empty{display:none}
 }
+
+/* Corrective pass: reuse the approved ALSTER components on this page only. */
+.sales-improvement-page .nav-wrap{
+  min-height:78px;
+  gap:30px;
+}
+.sales-improvement-page .brand-lockup{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  gap:9px;
+  min-width:218px;
+}
+.sales-improvement-page .brand-mark{
+  display:block;
+  width:54px;
+  height:40px;
+  flex:0 0 54px;
+}
+.sales-improvement-page .brand-mark img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.sales-improvement-page .brand-wording{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  line-height:normal;
+}
+.sales-improvement-page .brand-lockup .brand-wording strong{
+  font-size:25px;
+  line-height:.9;
+  letter-spacing:.08em;
+}
+.sales-improvement-page .brand-lockup .brand-wording small{
+  font-size:7px;
+  line-height:1;
+  letter-spacing:.075em;
+  white-space:nowrap;
+  color:#55645e;
+}
+
+.sales-improvement-page #scenarios .scenario-grid{
+  grid-auto-rows:auto;
+  align-items:stretch;
+}
+.sales-improvement-page #scenarios .scenario-card{
+  height:auto;
+  min-height:0;
+  align-self:stretch;
+}
+
+.sales-improvement-page .audit-insight{
+  align-self:center;
+  padding:28px 30px;
+  border-left:3px solid var(--accent);
+  border-radius:0 22px 22px 0;
+  background:#fff;
+}
+.sales-improvement-page .audit-conclusion{
+  margin:0;
+  font-size:21px;
+  line-height:1.45;
+}
+.sales-improvement-page .audit-section .audit-insight .note-inline{
+  width:min(100%,330px);
+  margin:22px 0 -8px auto;
+  padding:11px 14px;
+  font-size:20px;
+  transform:rotate(-1.2deg);
+}
+
+.sales-improvement-page .practice-case-section{
+  position:relative;
+  overflow:hidden;
+  padding-top:66px;
+  padding-bottom:66px;
+  background:#edf1e4;
+}
+.sales-improvement-page .practice-case-section .practice-case{
+  position:relative;
+  padding:48px 52px;
+  border-radius:34px;
+  background:#edf1e4;
+}
+.sales-improvement-page .practice-case-section .practice-case-header{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:40px;
+  align-items:start;
+}
+.sales-improvement-page .practice-case-section .case-kicker{
+  margin-bottom:16px;
+  color:var(--accent-dark);
+}
+.sales-improvement-page .practice-case-section h2{
+  max-width:760px;
+  margin:0;
+  font-size:clamp(34px,4vw,52px);
+  line-height:1.05;
+}
+.sales-improvement-page .practice-case-section .case-meta{
+  justify-content:flex-end;
+  align-self:end;
+  margin-top:0;
+  max-width:360px;
+}
+.sales-improvement-page .practice-case-section .practice-case-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(330px,.72fr);
+  gap:clamp(46px,7vw,92px);
+  align-items:start;
+  margin-top:44px;
+}
+.sales-improvement-page .practice-case-section .practice-stage{
+  display:grid;
+  grid-template-columns:126px minmax(0,1fr);
+  gap:26px;
+  padding:22px 0;
+  border-top:1px solid var(--line);
+}
+.sales-improvement-page .practice-case-section .practice-stage:first-child{
+  margin-bottom:4px;
+  padding:18px 0 18px 16px;
+  border-top:0;
+  border-left:2px solid rgba(21,37,31,.22);
+  background:linear-gradient(90deg,rgba(21,37,31,.045),transparent 76%);
+}
+.sales-improvement-page .practice-case-section .practice-stage>span{
+  padding-top:3px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.09em;
+}
+.sales-improvement-page .practice-case-section .practice-stage p{
+  margin:0;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.65;
+}
+.sales-improvement-page .practice-case-section .practice-stage-result{
+  position:relative;
+  margin-top:4px;
+  padding-left:18px;
+  border-left:3px solid var(--accent);
+  background:linear-gradient(90deg,rgba(105,132,119,.14),transparent 82%);
+}
+.sales-improvement-page .practice-case-section .practice-stage-result>span{color:var(--accent-dark)}
+.sales-improvement-page .practice-case-section .practice-stage-result p{
+  color:var(--text);
+  font-weight:600;
+}
+.sales-improvement-page .practice-case-section .practice-review-empty{
+  display:block;
+  min-height:360px;
+  margin:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.sales-improvement-page .pricing-summary{
+  width:min(100%,980px);
+  grid-template-columns:1fr;
+  grid-template-areas:"title" "main" "explanation" "term";
+  gap:20px;
+}
+.sales-improvement-page .pricing-main-list{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  padding:24px 28px;
+}
+.sales-improvement-page .pricing-item+.pricing-item{
+  margin:0;
+  padding:0 0 0 26px;
+  border-top:0;
+  border-left:1px solid var(--line);
+}
+.sales-improvement-page .pricing-explanation{
+  max-width:900px;
+}
+.sales-improvement-page .pricing-one-off{
+  width:100%;
+}
+
+.sales-improvement-page .final-system-cta-grid{
+  width:min(100%,860px);
+  grid-template-columns:1fr;
+  grid-template-areas:"title" "button";
+  gap:22px;
+}
+
+@media(max-width:980px){
+  .sales-improvement-page .nav-wrap{min-height:70px}
+  .sales-improvement-page .brand-lockup{min-width:142px;gap:7px}
+  .sales-improvement-page .brand-mark{width:42px;height:31px;flex-basis:42px}
+  .sales-improvement-page .brand-lockup .brand-wording strong{font-size:21px}
+  .sales-improvement-page .brand-lockup .brand-wording small{display:none}
+  .sales-improvement-page .practice-case-section .practice-case-header{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .sales-improvement-page .practice-case-section .case-meta{
+    justify-content:flex-start;
+    margin-top:18px;
+    max-width:none;
+  }
+  .sales-improvement-page .practice-case-section .practice-case-layout{
+    grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);
+    gap:38px;
+  }
+  .sales-improvement-page .practice-case-section .practice-stage{
+    grid-template-columns:104px minmax(0,1fr);
+    gap:20px;
+  }
+}
+
+@media(max-width:700px){
+  .sales-improvement-page .audit-insight{padding:22px 20px}
+  .sales-improvement-page .audit-section .audit-insight .note-inline{
+    margin:20px 0 -5px;
+  }
+  .sales-improvement-page .practice-case-section{
+    padding-top:46px;
+    padding-bottom:46px;
+  }
+  .sales-improvement-page .practice-case-section .practice-case{
+    padding:24px 18px;
+    border-radius:24px;
+  }
+  .sales-improvement-page .practice-case-section h2{
+    font-size:32px;
+    line-height:1.08;
+  }
+  .sales-improvement-page .practice-case-section .practice-case-layout{
+    grid-template-columns:1fr;
+    gap:34px;
+    margin-top:32px;
+  }
+  .sales-improvement-page .practice-case-section .practice-stage{
+    display:block;
+    padding:19px 0;
+  }
+  .sales-improvement-page .practice-case-section .practice-stage:first-child{
+    padding:16px 0 16px 13px;
+  }
+  .sales-improvement-page .practice-case-section .practice-stage>span{
+    display:block;
+    margin-bottom:8px;
+    padding:0;
+  }
+  .sales-improvement-page .practice-case-section .practice-stage p{
+    font-size:14.5px;
+    line-height:1.62;
+  }
+  .sales-improvement-page .practice-case-section .practice-stage-result{
+    margin-top:3px;
+    padding:19px 0 19px 15px;
+  }
+  .sales-improvement-page .practice-case-section .practice-review-empty{display:none}
+  .sales-improvement-page .pricing-main-list{grid-template-columns:1fr}
+  .sales-improvement-page .pricing-item+.pricing-item{
+    margin-top:18px;
+    padding:18px 0 0;
+    border-top:1px solid var(--line);
+    border-left:0;
+  }
+  .sales-improvement-page .final-system-cta-grid{
+    grid-template-areas:"title" "button";
+  }
+}
