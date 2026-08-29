@@ -1068,6 +1068,60 @@ body.sales-improvement-page{
   gap:22px;
 }
 
+.sales-improvement-page .scenario-card,
+.sales-improvement-page .project-scope>div{
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+
+@media(hover:hover) and (pointer:fine){
+  .sales-improvement-page .scenario-card:hover,
+  .sales-improvement-page .project-scope>div:hover{
+    transform:translateY(-7px);
+    box-shadow:var(--shadow);
+    border-color:#d7d8d3;
+  }
+}
+
+.sales-improvement-page .audit-post-section{
+  background:#edf1e4;
+}
+.sales-improvement-page .audit-post-section .section-head{
+  max-width:900px;
+}
+.sales-improvement-page .audit-post-gallery{
+  display:grid;
+  grid-template-columns:minmax(0,3fr) minmax(0,2fr);
+  gap:18px;
+  align-items:start;
+}
+.sales-improvement-page .audit-post-card{
+  min-width:0;
+  margin:0;
+}
+.sales-improvement-page .audit-post-card a{
+  display:block;
+  padding:9px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.sales-improvement-page .audit-post-card img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:10px;
+  background:#fff;
+}
+.sales-improvement-page .audit-post-caption{
+  width:100%;
+  margin:14px 0 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+}
+
 @media(max-width:980px){
   .sales-improvement-page .nav-wrap{min-height:70px}
   .sales-improvement-page .brand-lockup{min-width:142px;gap:7px}
@@ -1094,6 +1148,12 @@ body.sales-improvement-page{
 }
 
 @media(max-width:700px){
+  .sales-improvement-page .audit-post-gallery{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .sales-improvement-page .audit-post-card a{padding:7px}
+  .sales-improvement-page .audit-post-caption{font-size:12px}
   .sales-improvement-page .audit-insight{padding:22px 20px}
   .sales-improvement-page .audit-section .audit-insight .note-inline{
     margin:20px 0 -5px;
