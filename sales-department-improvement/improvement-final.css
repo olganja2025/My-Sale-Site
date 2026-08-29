@@ -1069,13 +1069,17 @@ body.sales-improvement-page{
 }
 
 .sales-improvement-page .scenario-card,
-.sales-improvement-page .project-scope>div{
-  transition:transform .2s,box-shadow .2s,border-color .2s;
+.sales-improvement-page .project-scope>div,
+.sales-improvement-page .transformation-row,
+.sales-improvement-page .improvement-steps>div{
+  transition:opacity .65s ease,transform .65s ease,box-shadow .2s,border-color .2s;
 }
 
 @media(hover:hover) and (pointer:fine){
   .sales-improvement-page .scenario-card:hover,
-  .sales-improvement-page .project-scope>div:hover{
+  .sales-improvement-page .project-scope>div:hover,
+  .sales-improvement-page .transformation-row:hover,
+  .sales-improvement-page .improvement-steps>div:hover{
     transform:translateY(-7px);
     box-shadow:var(--shadow);
     border-color:#d7d8d3;
