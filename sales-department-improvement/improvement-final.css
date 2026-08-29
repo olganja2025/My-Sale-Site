@@ -881,6 +881,30 @@ body.sales-improvement-page{
   min-height:0;
   align-self:stretch;
 }
+@media(min-width:901px){
+  .sales-improvement-page #scenarios .scenario-card:nth-child(4){
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 190px;
+    grid-template-areas:
+      "number number"
+      "title title"
+      "primary note"
+      "example note";
+    column-gap:20px;
+    align-items:start;
+  }
+  .sales-improvement-page #scenarios .scenario-card:nth-child(4) .scenario-num{grid-area:number}
+  .sales-improvement-page #scenarios .scenario-card:nth-child(4) h3{grid-area:title}
+  .sales-improvement-page #scenarios .scenario-card:nth-child(4) p:nth-of-type(1){grid-area:primary}
+  .sales-improvement-page #scenarios .scenario-card:nth-child(4) p:nth-of-type(2){grid-area:example}
+  .sales-improvement-page #scenarios .scenario-card:nth-child(4) .note-inline{
+    grid-area:note;
+    width:100%;
+    max-width:190px;
+    margin:0;
+    align-self:end;
+  }
+}
 
 .sales-improvement-page .audit-insight{
   align-self:center;
