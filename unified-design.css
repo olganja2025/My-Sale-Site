@@ -157,7 +157,7 @@ body.service-page{overflow-x:hidden;background:var(--bg);color:var(--text)}
 /* Final CTA and footer */
 .service-page .contact-section{background:var(--dark);color:#f8f6ef}
 .service-page .contact-section h2,.service-page .contact-section h3{color:#fff}
-.service-page .contact-section p{color:#c4cec8}
+.service-page .contact-section p:not(.telegram-note){color:#c4cec8}
 .service-page .contact-section .button-primary,
 .service-page .telegram-cta{background:var(--accent);color:var(--text);border-color:var(--accent)}
 .service-page .contact-section .button-primary:hover,
