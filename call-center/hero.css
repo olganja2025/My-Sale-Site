@@ -28,8 +28,9 @@
     padding-bottom:40px;
   }
   .call-center-page .cc-hero h1{
-    font-size:34px;
-    line-height:1.08;
+    font-size:32px;
+    line-height:1.12;
+    letter-spacing:-.02em;
   }
   .call-center-page .cc-hero-copy .lead{
     font-size:17px;
