@@ -1,0 +1,19 @@
+.individual-tasks-hero{min-height:auto;padding-top:86px;padding-bottom:72px}
+.individual-tasks-hero .lead{max-width:720px}
+.individual-tasks-list{background:var(--surface-2)}
+.individual-task-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.individual-task-card{min-height:0;padding:24px;background:var(--surface);border:1px solid var(--line)}
+.individual-task-card h3{font-size:23px;line-height:1.18}
+.individual-task-card p{margin:12px 0 18px;font-size:14px;line-height:1.58}
+.individual-task-card small{display:block;margin-top:12px;color:var(--muted);font-size:12px;line-height:1.5}
+.individual-task-card-wide{grid-column:1/-1}
+.individual-task-price,.individual-task-price-list{display:block;margin-top:auto;padding-top:16px;border-top:1px solid var(--line);color:var(--text);font-size:17px;line-height:1.4}
+.individual-task-price-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.individual-task-price-list strong{font-size:17px}
+@media(max-width:680px){
+  .individual-tasks-hero{padding-top:54px;padding-bottom:48px}
+  .individual-task-grid{grid-template-columns:1fr;gap:10px}
+  .individual-task-card-wide{grid-column:auto}
+  .individual-task-price-list{grid-template-columns:1fr;gap:7px}
+  .individual-task-card h3{font-size:22px}
+}
