@@ -49,6 +49,7 @@ jobs:
               ('sales-audit/', 'Аудит отдела продаж'),
               ('call-center/', 'Прозвон / колл-центр'),
               ('amocrm/', 'Внедрение и настройка amoCRM'),
+              ('individual-tasks/', 'Отдельные задачи'),
           ]
 
           def prefix_for(path: Path):
@@ -58,11 +59,11 @@ jobs:
 
           def desktop_nav(prefix):
               links = ''.join(f'<a href="{prefix}{href}"><strong>{label}</strong></a>' for href, label in services)
-              return f'<nav class="nav"><div class="nav-dropdown"><button class="nav-dropbtn" type="button">Услуги ▾</button><div class="nav-dropdown-menu">{links}</div></div><a class="individual-tasks-link" href="{prefix}individual-tasks/">Отдельные задачи</a><a href="{prefix}#about">Обо мне</a></nav>'
+              return f'<nav class="nav"><div class="nav-dropdown"><button class="nav-dropbtn" type="button">Услуги ▾</button><div class="nav-dropdown-menu">{links}</div></div><a href="{prefix}#about">Обо мне</a></nav>'
 
           def mobile_nav(prefix, is_home=False):
               links = ''.join(f'<a href="{prefix}{href}">{label}</a>' for href, label in services)
-              return f'<div class="mobile-nav" hidden><details class="mobile-service-menu"><summary>Услуги</summary><div class="mobile-service-links">{links}</div></details><a href="{prefix}individual-tasks/">Отдельные задачи</a><a href="{prefix}#about">Обо мне</a><a href="https://t.me/olganja" target="_blank" rel="noopener noreferrer">Написать мне</a></div>'
+              return f'<div class="mobile-nav" hidden><details class="mobile-service-menu"><summary>Услуги</summary><div class="mobile-service-links">{links}</div></details><a href="{prefix}#about">Обо мне</a><a href="https://t.me/olganja" target="_blank" rel="noopener noreferrer">Написать мне</a></div>'
 
           active_pages = [
               Path('index.html'), Path('404.html'), Path('prices/index.html'),
