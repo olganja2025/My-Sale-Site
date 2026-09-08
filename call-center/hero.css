@@ -211,8 +211,10 @@
   color:var(--muted);
 }
 
-.call-center-page .cc-case .cc-conclusion{
-  color:var(--text);
+.call-center-page .cc-case-note{
+  display:block;
+  max-width:520px;
+  margin-top:22px;
 }
 
 .call-center-page .cc-dark-prose{
@@ -239,6 +241,25 @@
 .call-center-page .cc-faq-list{
   display:grid;
   gap:10px;
+}
+
+.call-center-page .cc-faq-related{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  color:var(--text)!important;
+  font-weight:700;
+}
+
+.call-center-page .cc-faq-related a{
+  color:var(--accent-dark);
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:4px;
+}
+
+.call-center-page .cc-faq-related a:hover{
+  color:var(--text);
 }
 
 .call-center-page .seo-faq .cc-faq-list details:last-child>p{
