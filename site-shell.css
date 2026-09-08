@@ -1,4 +1,4 @@
-/* Shared header/footer additions used on every ALSTER page. */
+/* Shared header/footer additions used on every ANISEN page. */
 body.service-page .brand-lockup{min-width:218px;gap:9px}
 body.service-page .brand-lockup .brand-mark{display:block;width:54px;height:40px;flex:0 0 54px}
 body.service-page .brand-lockup .brand-mark img{display:block;width:100%;height:100%;object-fit:contain}
@@ -9,17 +9,26 @@ body.service-page .site-header .brand-lockup.brand-lockup-image{display:block;mi
 body.service-page .site-header .brand-lockup-image .brand-mark{position:static;display:block;width:220px;height:46px;margin:0;overflow:hidden;flex:0 0 220px}
 body.service-page .site-header .brand-lockup-image .brand-mark img{position:static;display:block;width:100%;max-width:100%;height:100%;left:auto;top:auto;object-fit:cover;object-position:center;mix-blend-mode:multiply}
 .nav .individual-tasks-link{white-space:nowrap}
-.footer.site-footer{padding:54px 0 24px}
-.site-footer-grid{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(300px,1.25fr) minmax(190px,.65fr);gap:clamp(38px,7vw,90px);align-items:start}
-.site-footer-brand{display:grid;gap:9px}
-.site-footer-brand strong{color:#fff;font-size:26px;letter-spacing:.08em}
-.site-footer-brand span{max-width:220px;color:#aebbb5;font-size:13px;line-height:1.5}
-.site-footer-heading{display:block;margin-bottom:14px;color:#dce3df;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
-.site-footer-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 22px}
-.site-footer-links a,.site-footer-nav a{color:#aebbb5;text-decoration:none;font-size:13px;line-height:1.45}
-.site-footer-links a:hover,.site-footer-nav a:hover{color:#fff}
-.site-footer-nav{display:grid;gap:10px}
-.site-footer-legal{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:38px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);color:#85918b;font-size:11px;line-height:1.5}
+.footer.site-footer{padding:38px 0 18px}
+.site-footer-grid{display:grid;grid-template-columns:minmax(190px,.85fr) minmax(140px,.6fr) minmax(160px,.65fr) minmax(240px,1.05fr);gap:26px clamp(28px,4vw,56px);align-items:start}
+.site-footer-grid>*{min-width:0}
+.site-footer-brand{display:grid;gap:5px}
+.site-footer-brand strong{color:#fff;font-size:24px;line-height:1;letter-spacing:.08em}
+.site-footer-brand span{max-width:230px;color:#aebbb5;font-size:12px;line-height:1.4}
+.site-footer-brand .site-footer-tagline{color:#dce3df;font-weight:700}
+.site-footer-brand .site-footer-remote{margin-top:6px;color:#94a29b}
+.site-footer-heading{display:block;margin-bottom:10px;color:#dce3df;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.site-footer-links{display:grid;grid-template-columns:1fr;gap:6px}
+.site-footer-links a,.site-footer-nav a{min-width:0;color:#aebbb5;text-decoration:none;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.site-footer-links a:hover,.site-footer-nav a:hover,.site-footer-documents a:hover{color:#fff}
+.site-footer-nav,.site-footer-requisites{display:grid;gap:6px}
+.site-footer-requisites{min-width:0;color:#aebbb5;font-size:11px;line-height:1.4;overflow-wrap:anywhere}
+.site-footer-requisites strong{color:#dce3df;font-size:11px;font-weight:700}
+.site-footer-documents{display:flex;flex-wrap:wrap;gap:5px 16px;margin-top:24px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
+.site-footer-documents a{min-width:0;max-width:100%;color:#aebbb5;font-size:10px;line-height:1.35;text-decoration:none;overflow-wrap:anywhere}
+@media(max-width:1050px) and (min-width:761px){
+  .site-footer-grid{grid-template-columns:minmax(190px,.7fr) minmax(0,1.3fr);gap:24px 40px}
+}
 @media(max-width:760px){
   body.service-page .site-header .nav-wrap{min-height:70px}
   body.service-page .brand-lockup{min-width:142px;gap:7px}
@@ -27,11 +36,14 @@ body.service-page .site-header .brand-lockup-image .brand-mark img{position:stat
   body.service-page .brand-lockup .brand-wording strong{font-size:21px}
   body.service-page .site-header .brand-lockup.brand-lockup-image{min-width:176px}
   body.service-page .site-header .brand-lockup-image .brand-mark{width:176px;height:37px;flex-basis:176px}
-  .footer.site-footer{padding:28px 0 16px}
-  .site-footer-grid{grid-template-columns:1fr;gap:21px}
-  .site-footer-brand{gap:6px}
-  .site-footer-heading{margin-bottom:10px}
-  .site-footer-links{grid-template-columns:1fr;gap:7px}
-  .site-footer-nav{gap:7px}
-  .site-footer-legal{display:grid;gap:4px;margin-top:21px;padding-top:14px}
+  .footer.site-footer{padding:22px 0 13px}
+  .site-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px}
+  .site-footer-brand{gap:3px}
+  .site-footer-brand .site-footer-remote{margin-top:3px}
+  .site-footer-heading{margin-bottom:7px}
+  .site-footer-links{grid-template-columns:1fr;gap:4px}
+  .site-footer-links a,.site-footer-nav a{font-size:11px;line-height:1.35}
+  .site-footer-nav,.site-footer-requisites{gap:4px}
+  .site-footer-documents{gap:4px 10px;margin-top:15px;padding-top:10px}
+  .site-footer-documents a{font-size:10px;line-height:1.3}
 }
