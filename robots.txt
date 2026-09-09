@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://services.alster-os.ru/sitemap.xml
+Sitemap: https://anisen.ru/sitemap.xml
