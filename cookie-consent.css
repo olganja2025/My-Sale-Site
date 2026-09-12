@@ -1,0 +1,21 @@
+/* ANISEN cookie consent banner — uses the site's existing color/radius/shadow tokens (see styles.css :root). */
+.cookie-consent-banner{position:fixed;left:20px;right:20px;bottom:20px;z-index:1000;max-width:920px;margin:0 auto;background:var(--surface,#fff);border:1px solid var(--line,#d7d6cf);border-radius:var(--radius,24px);box-shadow:var(--shadow,0 18px 55px rgba(28,33,31,.08));padding:24px 28px;display:flex;align-items:center;gap:24px;font-family:Manrope,system-ui,sans-serif}
+.cookie-consent-banner[hidden]{display:none!important}
+.cookie-consent-copy{flex:1 1 auto;min-width:0}
+.cookie-consent-copy h2{margin:0 0 6px;font-size:16px;letter-spacing:-.01em;line-height:1.25;color:var(--text,#1c211f)}
+.cookie-consent-copy p{margin:0;color:var(--muted,#626965);font-size:13px;line-height:1.55;max-width:660px}
+.cookie-consent-copy a{color:var(--accent-dark,#4d675c);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+.cookie-consent-actions{display:flex;align-items:center;gap:10px;flex:0 0 auto;flex-wrap:wrap}
+.cookie-consent-actions button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:12px;font-weight:800;font-size:13px;font-family:inherit;border:1px solid transparent;cursor:pointer;transition:.2s;white-space:nowrap}
+.cookie-consent-accept{background:var(--dark,#1d2422);color:#fff}
+.cookie-consent-accept:hover{transform:translateY(-1px);background:#28312e}
+.cookie-consent-necessary{background:transparent;border-color:#bfc2bd;color:var(--text,#1c211f)}
+.cookie-consent-necessary:hover{background:#fff}
+.cookie-settings-trigger{background:none;border:0;padding:0;margin:0;color:#aebbb5;font-size:10px;line-height:1.35;font-family:inherit;text-decoration:none;cursor:pointer}
+.cookie-settings-trigger:hover{color:#fff}
+@media(max-width:760px){
+  .cookie-consent-banner{left:12px;right:12px;bottom:12px;padding:18px;flex-direction:column;align-items:stretch;gap:16px}
+  .cookie-consent-copy p{font-size:12px}
+  .cookie-consent-actions{flex-direction:column-reverse}
+  .cookie-consent-actions button{width:100%}
+}
