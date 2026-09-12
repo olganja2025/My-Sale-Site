@@ -13,8 +13,9 @@ const ANISEN_MESSENGERS=[
 
 document.querySelectorAll('[data-anisen-contact]').forEach((root)=>{
   const contactTitle=root.dataset.contactTitle||'Обсудить проект';
-  const termsHref=root.dataset.termsHref||'terms/';
+  const privacyHref=root.dataset.privacyHref||'privacy-policy/';
   const consentHref=root.dataset.consentHref||'personal-data-consent/';
+  const adsHref=root.dataset.adsHref||'advertising-consent/';
   const links=ANISEN_MESSENGERS.map(({key,label,icon})=>{
     const url=ANISEN_MESSENGER_URLS[key];
     const content=`<span class="messenger-link-icon">${icon}</span><span>${label}</span>`;
@@ -23,7 +24,7 @@ document.querySelectorAll('[data-anisen-contact]').forEach((root)=>{
       : `<span class="messenger-link messenger-link-placeholder" aria-disabled="true" data-messenger-placeholder="${key}">${content}</span>`;
   }).join('');
 
-  root.innerHTML=`<div class="messenger-contact-head"><h3>${contactTitle}</h3><p>Напишите удобным способом</p></div><div class="messenger-links">${links}</div><p class="messenger-legal">Продолжая, вы принимаете <a href="${termsHref}">Пользовательское соглашение</a> и даёте согласие на <a href="${consentHref}">обработку персональных данных</a>.</p>`;
+  root.innerHTML=`<div class="messenger-contact-head"><h3>${contactTitle}</h3><p>Напишите удобным способом</p></div><div class="messenger-links">${links}</div><p class="messenger-legal">Продолжая, вы соглашаетесь с <a href="${privacyHref}">Политикой обработки персональных данных</a>, даёте согласие на <a href="${consentHref}">обработку персональных данных</a> и на <a href="${adsHref}">получение рекламных сообщений</a>.</p>`;
 });
 
 document.querySelectorAll('[data-anisen-footer-contacts]').forEach((contacts)=>{
