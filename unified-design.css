@@ -147,6 +147,24 @@ body.service-page{overflow-x:hidden;background:var(--bg);color:var(--text)}
 .service-page .faq-item p{color:var(--muted)}
 .service-page .section-dark .faq-item{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.13)}
 .service-page .section-dark .faq-item p{color:#c2cbc6}
+.service-page .faq-item summary{
+  position:relative;
+  list-style:none;
+  padding:15px 34px 15px 0;
+}
+.service-page .faq-item summary::-webkit-details-marker{display:none}
+.service-page .faq-item summary::after{
+  content:"+";
+  position:absolute;
+  right:0;
+  top:13px;
+  color:var(--accent-dark);
+  font-size:22px;
+  font-weight:500;
+  line-height:1;
+  transition:transform .2s ease;
+}
+.service-page .faq-item[open] summary::after{transform:rotate(45deg)}
 
 /* Existing handwritten notes, kept rare and consistent */
 .service-page .note-inline,
