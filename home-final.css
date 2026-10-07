@@ -147,6 +147,51 @@
   }
 }
 
+/* Compact CTA bridge right after the "Выберите ситуацию" block */
+.cta-bridge{
+  padding:48px 0;
+}
+.cta-bridge-inner{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:30px 34px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:var(--surface-2);
+}
+.cta-bridge-text{
+  margin:0;
+  max-width:540px;
+  font-size:19px;
+  font-weight:700;
+  color:var(--text);
+}
+.cta-bridge-actions{
+  margin:0;
+  flex-wrap:wrap;
+}
+@media(max-width:640px){
+  .cta-bridge{
+    padding:34px 0;
+  }
+  .cta-bridge-inner{
+    flex-direction:column;
+    align-items:stretch;
+    padding:24px 20px;
+    text-align:center;
+  }
+  .cta-bridge-text{
+    max-width:100%;
+    font-size:17px;
+  }
+  .cta-bridge-actions{
+    justify-content:center;
+  }
+}
+
 /* Approved ANISEN lockup with its tagline built into the image. */
 .brand-lockup-image{display:block;min-width:220px}
 .brand-lockup-image .brand-mark{display:block;width:220px;height:46px;overflow:hidden;flex:0 0 220px}
