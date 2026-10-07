@@ -4,6 +4,8 @@ const ANISEN_MESSENGER_URLS=Object.freeze({
   max:'https://max.ru/u/f9LHodD0cOJNPDeCRrwAR5loipBVfarlvzP56lFlbND2lWRawLjgSXrMu4c'
 });
 const ANISEN_MAX_ICON_URL=new URL('assets/images/max-messenger-white.svg',document.currentScript.src).href;
+const ANISEN_PHONE_URL='tel:+79293366428';
+const ANISEN_PHONE_ICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.9c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>';
 
 const ANISEN_MESSENGERS=[
   {key:'telegram',label:'Telegram',icon:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 4.1 3.8 10.6c-1.2.5-1.2 1.2-.2 1.5l4.3 1.4 1.7 5.2c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.1-2 4.4 3.2c.8.5 1.4.3 1.6-.8l2.9-13.8c.3-1.3-.5-1.9-1.6-1.5ZM9.6 13.2l8.4-5.3c.4-.2.8-.1.5.2l-6.9 6.2-.3 3.1-1.7-4.2Z"/></svg>'},
@@ -23,7 +25,9 @@ document.querySelectorAll('[data-anisen-contact]').forEach((root)=>{
       : `<span class="messenger-link messenger-link-placeholder" aria-disabled="true" data-messenger-placeholder="${key}">${content}</span>`;
   }).join('');
 
-  root.innerHTML=`<div class="messenger-contact-head"><h3>${contactTitle}</h3><p>Напишите удобным способом</p></div><div class="messenger-links">${links}</div><p class="messenger-legal">Нажимая кнопку, вы подтверждаете, что ознакомились с <a href="${privacyHref}">Политикой в отношении обработки персональных данных</a> и даёте <a href="${consentHref}">Согласие на обработку персональных данных</a>.</p>`;
+  const phoneLink=`<a class="messenger-link" href="${ANISEN_PHONE_URL}"><span class="messenger-link-icon">${ANISEN_PHONE_ICON}</span><span>Позвонить</span></a>`;
+
+  root.innerHTML=`<div class="messenger-contact-head"><h3>${contactTitle}</h3><p>Напишите удобным способом</p></div><div class="messenger-links">${links}${phoneLink}</div><p class="messenger-legal">Нажимая кнопку, вы подтверждаете, что ознакомились с <a href="${privacyHref}">Политикой в отношении обработки персональных данных</a> и даёте <a href="${consentHref}">Согласие на обработку персональных данных</a>.</p>`;
 });
 
 document.querySelectorAll('[data-anisen-footer-contacts]').forEach((contacts)=>{
