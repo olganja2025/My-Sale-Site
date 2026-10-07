@@ -30,25 +30,6 @@
     return data;
   }
 
-  function deleteYandexMetrikaCookies(){
-    try{
-      var cookieNames=document.cookie.split(';').map(function(part){
-        return part.trim().split('=')[0];
-      }).filter(function(name){
-        return name.indexOf('_ym_')===0;
-      });
-      if(!cookieNames.length)return;
-      var host=location.hostname;
-      var domains=[host,'.'+host.replace(/^www\./,''),''];
-      cookieNames.forEach(function(name){
-        domains.forEach(function(domain){
-          var cookieStr=name+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+(domain?'; domain='+domain:'');
-          document.cookie=cookieStr;
-        });
-      });
-    }catch(e){/* ignore */}
-  }
-
   function loadYandexMetrika(){
     if(window.__anisenMetrikaLoaded)return;
     window.__anisenMetrikaLoaded=true;
@@ -84,15 +65,11 @@
     el.hidden=true;
     el.innerHTML=
       '<div class="cookie-consent-copy">'+
-        '<h2>Файлы cookie и аналитика</h2>'+
-        '<p>Мы используем файлы cookie и Яндекс Метрику для анализа посещаемости сайта и улучшения его работы. '+
-        'Технически необходимые cookie обеспечивают базовую работу сайта и включены всегда. '+
-        'Аналитические cookie (Яндекс Метрика) запускаются только с вашего согласия. '+
-        'Подробнее в <a href="'+PRIVACY_HREF+'">Политике в отношении обработки персональных данных</a>.</p>'+
+        '<p>Мы используем файлы cookie, чтобы сайт работал лучше. Продолжая пользоваться сайтом, вы соглашаетесь с '+
+        '<a href="'+PRIVACY_HREF+'">Политикой обработки персональных данных</a>.</p>'+
       '</div>'+
       '<div class="cookie-consent-actions">'+
-        '<button type="button" class="cookie-consent-necessary" data-cookie-action="necessary">Только необходимые</button>'+
-        '<button type="button" class="cookie-consent-accept" data-cookie-action="accept">Принять все</button>'+
+        '<button type="button" class="cookie-consent-accept" data-cookie-action="accept">Принять</button>'+
       '</div>';
     document.body.appendChild(el);
 
@@ -100,11 +77,6 @@
       writeConsent(true);
       hideBanner();
       loadYandexMetrika();
-    });
-    el.querySelector('[data-cookie-action="necessary"]').addEventListener('click',function(){
-      writeConsent(false);
-      hideBanner();
-      deleteYandexMetrikaCookies();
     });
 
     return el;
