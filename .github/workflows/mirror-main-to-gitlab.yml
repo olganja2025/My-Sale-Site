@@ -1,0 +1,143 @@
+# Резервное зеркало GitHub -> GitLab. Только ветка main, только fast-forward.
+# Никаких force push, удаления веток/тегов, merge/rebase и создания веток.
+# Если в GitLab есть собственные коммиты или истории разошлись — запуск падает без записи.
+# Работает с Personal Access Token (scope write_repository): только git, без GitLab API.
+name: Mirror main to GitLab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mirror-main-to-gitlab
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GITLAB_HOST: https://gitlab.com
+      # Путь проекта задаётся переменной репозитория, а не кодом: Anisen-group/alster
+      GITLAB_PROJECT: ${{ vars.GITLAB_PROJECT }}
+      # Токен только из секретов. В URL не попадает, в логи не выводится.
+      GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+      GIT_TERMINAL_PROMPT: "0"
+
+    steps:
+      - name: Проверить настройку
+        run: |
+          set -euo pipefail
+          if [ -z "${GITLAB_PROJECT}" ]; then
+            echo "::error::Не задана переменная репозитория GITLAB_PROJECT (ожидается Anisen-group/My-Sale-Site)"
+            exit 1
+          fi
+          if ! printf '%s' "${GITLAB_PROJECT}" | grep -Eq '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$'; then
+            echo "::error::GITLAB_PROJECT должен иметь вид группа/проект"
+            exit 1
+          fi
+          if [ -z "${GITLAB_TOKEN}" ]; then
+            echo "::error::Не задан секрет GITLAB_TOKEN"
+            exit 1
+          fi
+          echo "Проект GitLab: ${GITLAB_PROJECT}"
+
+      - name: Checkout (полная история, без сохранения токена GitHub)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Прочитать main в GitLab
+        id: gitlab
+        run: |
+          set -euo pipefail
+          remote="${GITLAB_HOST}/${GITLAB_PROJECT}.git"
+          if ! out=$(git -c credential.helper='!f() { echo username=oauth2; echo "password=$GITLAB_TOKEN"; }; f' \
+              ls-remote --heads "${remote}" refs/heads/main 2>"${RUNNER_TEMP}/lsremote.err"); then
+            echo "::error::Не удалось прочитать GitLab: нет доступа или неверный путь проекта."
+            tail -5 "${RUNNER_TEMP}/lsremote.err" || true
+            exit 1
+          fi
+          if [ -z "${out}" ]; then
+            echo "::error::Ветка main не найдена в GitLab. Ветки не создаю."
+            exit 1
+          fi
+          gl_sha=$(printf '%s\n' "${out}" | awk 'NR==1{print $1}')
+          gh_sha=$(git rev-parse HEAD)
+          echo "gitlab_sha=${gl_sha}" >> "${GITHUB_OUTPUT}"
+          echo "github_sha=${gh_sha}" >> "${GITHUB_OUTPUT}"
+          echo "GitLab main: ${gl_sha}"
+          echo "GitHub main: ${gh_sha}"
+
+      - name: Проверить расхождение истории
+        id: check
+        run: |
+          set -euo pipefail
+          gl_sha="${{ steps.gitlab.outputs.gitlab_sha }}"
+          gh_sha="${{ steps.gitlab.outputs.github_sha }}"
+          remote="${GITLAB_HOST}/${GITLAB_PROJECT}.git"
+
+          if [ "${gl_sha}" = "${gh_sha}" ]; then
+            echo "Уже синхронизировано, отправка не нужна."
+            echo "need_push=false" >> "${GITHUB_OUTPUT}"
+            exit 0
+          fi
+          echo "need_push=true" >> "${GITHUB_OUTPUT}"
+
+          # Скачиваем текущий main из GitLab, чтобы проверить родство коммитов локально.
+          git -c credential.helper='!f() { echo username=oauth2; echo "password=$GITLAB_TOKEN"; }; f' \
+            fetch --no-tags "${remote}" "+refs/heads/main:refs/remotes/gitlab/main"
+          fetched=$(git rev-parse refs/remotes/gitlab/main)
+          if [ "${fetched}" != "${gl_sha}" ]; then
+            echo "::error::GitLab main изменился во время проверки (${fetched} != ${gl_sha}). Повторите запуск."
+            exit 1
+          fi
+
+          if git merge-base --is-ancestor "${gl_sha}" "${gh_sha}"; then
+            echo "GitLab отстаёт от GitHub — возможен fast-forward."
+          else
+            echo "::error::В GitLab есть коммиты, которых нет на GitHub. Останавливаюсь без записи."
+            exit 1
+          fi
+
+          if git merge-base --is-ancestor "${gh_sha}" "${gl_sha}"; then
+            echo "::error::GitHub отстаёт от GitLab. Останавливаюсь без записи."
+            exit 1
+          fi
+
+      - name: Отправить main в GitLab (без force)
+        if: steps.check.outputs.need_push == 'true'
+        run: |
+          set -euo pipefail
+          gh_sha="${{ steps.gitlab.outputs.github_sha }}"
+          # Явный refspec: только refs/heads/main, без тегов и других веток.
+          git -c credential.helper='!f() { echo username=oauth2; echo "password=$GITLAB_TOKEN"; }; f' \
+            push "${GITLAB_HOST}/${GITLAB_PROJECT}.git" \
+            "${gh_sha}:refs/heads/main"
+
+      - name: Подтвердить результат
+        run: |
+          set -euo pipefail
+          remote="${GITLAB_HOST}/${GITLAB_PROJECT}.git"
+          if ! out=$(git -c credential.helper='!f() { echo username=oauth2; echo "password=$GITLAB_TOKEN"; }; f' \
+              ls-remote --heads "${remote}" refs/heads/main 2>/dev/null); then
+            echo "::error::Не удалось перечитать GitLab main после отправки."
+            exit 1
+          fi
+          gl_sha=$(printf '%s\n' "${out}" | awk 'NR==1{print $1}')
+          gh_sha=$(git rev-parse HEAD)
+          if [ "${gl_sha}" != "${gh_sha}" ]; then
+            echo "::error::После отправки GitLab main = ${gl_sha}, ожидался ${gh_sha}"
+            exit 1
+          fi
+          {
+            echo "### Зеркало GitHub → GitLab"
+            echo ""
+            echo "- Проект: \`${GITLAB_PROJECT}\`"
+            echo "- Коммит: \`${gh_sha}\`"
+            echo "- Статус: синхронизировано"
+          } >> "${GITHUB_STEP_SUMMARY}"
