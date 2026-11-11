@@ -5,6 +5,8 @@
 name: Mirror main to GitLab
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
