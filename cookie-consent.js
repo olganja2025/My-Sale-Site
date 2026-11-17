@@ -26,7 +26,7 @@
     var data={analytics:!!analytics,timestamp:new Date().toISOString(),version:CONSENT_VERSION};
     try{
       window.localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
-    }catch(e){/* localStorage unavailable — consent just won't persist */}
+    }catch(e){/* localStorage unavailable - consent just won't persist */}
     return data;
   }
 
