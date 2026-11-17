@@ -1,0 +1,26 @@
+/* ANISEN: exit-intent popup «Первичный разбор продаж».
+   Токены и геометрия — из утверждённого callback-widget.css (lime #b8f36b, графит #15251f).
+   Показ управляется exit-popup.js: десктоп — уход курсора за верхнюю границу,
+   мобильный — 2 минуты на сайте. Показ не чаще 1 раза в 7 дней. */
+.exp-overlay{--exp-lime:#b8f36b;--exp-dark:#15251f;--exp-line:rgba(21,37,31,.14);--exp-gray:#aeb4b0;--exp-muted:#5f6b65;position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(21,37,31,.55);font-family:Manrope,system-ui,sans-serif;opacity:0;transition:opacity .18s ease}
+.exp-overlay.is-shown{opacity:1}
+.exp-overlay[hidden]{display:none}
+.exp-overlay *{box-sizing:border-box}
+.exp-card{position:relative;width:100%;max-width:440px;padding:28px;border-radius:24px;background:#fff;color:var(--exp-dark);box-shadow:0 22px 60px rgba(21,37,31,.28)}
+.exp-close{position:absolute;top:12px;right:12px;display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--exp-dark);cursor:pointer}
+.exp-close:hover{background:#f1f2ed}
+.exp-close svg{width:20px;height:20px}
+.exp-eyebrow{margin:0 0 10px;color:var(--exp-muted);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.exp-title{margin:0 40px 10px 0;font-size:26px;font-weight:800;line-height:1.1;letter-spacing:-.03em}
+.exp-text{margin:0 0 10px;color:var(--exp-muted);font-size:15px;line-height:1.5}
+.exp-meta{margin:0 0 18px;padding:12px 14px;border:1px solid var(--exp-line);border-radius:14px;background:#fbfbf9;color:var(--exp-dark);font-size:14px;font-weight:700;line-height:1.4}
+.exp-btn{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:0 24px;border:1px solid transparent;border-radius:999px;background:var(--exp-dark);color:#fff;font:inherit;font-size:15px;font-weight:800;cursor:pointer;transition:transform .25s ease,background .25s ease}
+.exp-btn:hover{transform:translateY(-2px);background:#22362f}
+.exp-btn:focus-visible,.exp-close:focus-visible{outline:3px solid var(--exp-dark);outline-offset:2px}
+@media(max-width:640px){
+  .exp-overlay{align-items:flex-end;padding:8px}
+  .exp-card{padding:22px 18px 20px;border-radius:22px}
+  .exp-title{margin-right:44px;font-size:22px}
+  .exp-close{top:6px;right:6px}
+}
+@media(prefers-reduced-motion:reduce){.exp-overlay,.exp-btn{transition:none}}

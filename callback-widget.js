@@ -100,20 +100,22 @@
   /* Цель только после успешного ответа сервера, только для новой заявки, один раз на ключ.
      Если Метрика не загружена (нет согласия на cookie), цель молча пропускается. */
   function reachGoal(leadKey){
+    /* Заявка из лид-магнита (первичный разбор) идёт в отдельную цель. */
     var key=GOAL_BY_PAGE[currentPage()];
-    if(!key)return;
+    var goal=state.source?'lead_sales_review':(key?'lead_callback_'+key:null);
+    if(!goal)return;
     var done=sentGoals();
     if(done.indexOf(leadKey)>=0)return;
     done.push(leadKey);
     writeJson('anisen_lead_goals',done.slice(-20));
     if(typeof window.ym==='function'){
-      try{window.ym(METRIKA_ID,'reachGoal','lead_callback_'+key);}catch(e){}
+      try{window.ym(METRIKA_ID,'reachGoal',goal);}catch(e){}
     }
   }
 
   /* ---------- состояние ---------- */
 
-  var state={key:null,keyPhone:null,openedAt:0,sending:false,lastFocus:null};
+  var state={key:null,keyPhone:null,openedAt:0,sending:false,lastFocus:null,source:null};
 
   function ensureKey(phone){
     if(!state.key||(state.keyPhone&&state.keyPhone!==phone))state.key=newKey();
@@ -244,6 +246,7 @@
     overlay.classList.remove('is-shown');
     document.documentElement.classList.remove('cbw-lock');
     window.setTimeout(function(){overlay.hidden=true;},180);
+    state.source=null;
     if(state.lastFocus&&typeof state.lastFocus.focus==='function')state.lastFocus.focus();
   }
 
@@ -251,12 +254,16 @@
     form.reset();
     state.key=null;
     state.keyPhone=null;
+    state.source=null;
   }
 
   function sendLead(phone){
     var attr=attribution();
     var utm={};
     ['source','medium','campaign','content','term'].forEach(function(k){if(attr['utm_'+k])utm[k]=attr['utm_'+k];});
+    /* Источник лид-магнита пишем только если реальной рекламной метки нет:
+       метку кампании не перезаписываем. */
+    if(state.source&&!utm.source)utm.source=state.source;
     var body={
       lead_key:ensureKey(phone),
       phone:phone,
@@ -294,6 +301,9 @@
     var j=r.json;
     if(r.status===200&&j&&j.ok===true){
       if(j.duplicate!==true)reachGoal(r.leadKey);
+      /* Постоянная метка «заявка уже отправлялась» — по ней exit-popup
+         больше не показывается в этом браузере. */
+      try{window.localStorage.setItem('anisen_lead_sent','1');}catch(e){}
       resetFormAfterSuccess();
       form.hidden=true;
       successBox.hidden=false;
@@ -385,6 +395,13 @@
   }
 
   /* ---------- запуск ---------- */
+
+  /* Публичный API: open({source:'exit-intent'}) — открытие формы с внешним
+     источником (использует exit-popup). Телефон и токен не передаются. */
+  window.CallbackWidget={open:function(opts){
+    if(opts&&typeof opts.source==='string'&&opts.source)state.source=opts.source.slice(0,32);
+    openForm();
+  }};
 
   function start(){
     if(document.querySelector('.cbw'))return;
