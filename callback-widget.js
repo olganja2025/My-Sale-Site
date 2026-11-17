@@ -17,7 +17,7 @@
   var GOAL_BY_PAGE={
     '/':'home',
     '/sales-department/':'sales_department',
-    '/sales-department-improvement/':'sales_department_improvement',
+    '/sales-department-improvement/':'sales_improvement',
     '/external-rop/':'external_rop',
     '/sales-audit/':'sales_audit',
     '/call-center/':'call_center',
