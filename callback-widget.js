@@ -301,7 +301,7 @@
     var j=r.json;
     if(r.status===200&&j&&j.ok===true){
       if(j.duplicate!==true)reachGoal(r.leadKey);
-      /* Постоянная метка «заявка уже отправлялась» — по ней exit-popup
+      /* Постоянная метка «заявка уже отправлялась» - по ней exit-popup
          больше не показывается в этом браузере. */
       try{window.localStorage.setItem('anisen_lead_sent','1');}catch(e){}
       resetFormAfterSuccess();
@@ -396,7 +396,7 @@
 
   /* ---------- запуск ---------- */
 
-  /* Публичный API: open({source:'exit-intent'}) — открытие формы с внешним
+  /* Публичный API: open({source:'exit-intent'}) - открытие формы с внешним
      источником (использует exit-popup). Телефон и токен не передаются. */
   window.CallbackWidget={open:function(opts){
     if(opts&&typeof opts.source==='string'&&opts.source)state.source=opts.source.slice(0,32);

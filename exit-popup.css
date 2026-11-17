@@ -1,7 +1,7 @@
 /* ANISEN: exit-intent popup «Первичный разбор продаж».
-   Токены и геометрия — из утверждённого callback-widget.css (lime #b8f36b, графит #15251f).
-   Показ управляется exit-popup.js: десктоп — уход курсора за верхнюю границу,
-   мобильный — 2 минуты на сайте. Показ не чаще 1 раза в 7 дней. */
+   Токены и геометрия - из утверждённого callback-widget.css (lime #b8f36b, графит #15251f).
+   Показ управляется exit-popup.js: десктоп - уход курсора за верхнюю границу,
+   мобильный - 2 минуты на сайте. Показ не чаще 1 раза в 7 дней. */
 .exp-overlay{--exp-lime:#b8f36b;--exp-dark:#15251f;--exp-line:rgba(21,37,31,.14);--exp-gray:#aeb4b0;--exp-muted:#5f6b65;position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(21,37,31,.55);font-family:Manrope,system-ui,sans-serif;opacity:0;transition:opacity .18s ease}
 .exp-overlay.is-shown{opacity:1}
 .exp-overlay[hidden]{display:none}
