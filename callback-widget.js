@@ -116,11 +116,19 @@
   /* ---------- состояние ---------- */
 
   var state={key:null,keyPhone:null,openedAt:0,sending:false,lastFocus:null,source:null};
+  /* Отдельное состояние для встраиваемой формы в контактном блоке: свой ключ дублей,
+     чтобы не пересекаться с ключом диалогового окна. */
+  var inlineState={key:null,keyPhone:null,openedAt:0};
 
   function ensureKey(phone){
     if(!state.key||(state.keyPhone&&state.keyPhone!==phone))state.key=newKey();
     state.keyPhone=phone;
     return state.key;
+  }
+
+  function inlineKey(phone){
+    if(!inlineState.key||(inlineState.keyPhone&&inlineState.keyPhone!==phone)){inlineState.key=newKey();inlineState.keyPhone=phone;}
+    return inlineState.key;
   }
 
   /* ---------- разметка ---------- */
@@ -396,15 +404,90 @@
 
   /* ---------- запуск ---------- */
 
+  /* ---------- публичный API ---------- */
+
+  /* Единая логика заявки для встраиваемой формы контактного блока:
+     те же проверка номера, согласия, honeypot, ключ дублей, /api/lead/ и цель
+     lead_callback_<страница>. Источник exit-intent здесь не применяется.
+     Аргументы: {phone, consentPersonal, consentAds, company}. */
+  function inlineGoal(leadKey){
+    var key=GOAL_BY_PAGE[currentPage()];
+    if(!key)return;
+    var done=sentGoals();
+    if(done.indexOf(leadKey)>=0)return;
+    done.push(leadKey);
+    writeJson('anisen_lead_goals',done.slice(-20));
+    if(typeof window.ym==='function'){
+      try{window.ym(METRIKA_ID,'reachGoal','lead_callback_'+key);}catch(e){}
+    }
+  }
+
+  function submitInline(fields){
+    fields=fields||{};
+    var chk=checkPhone(fields.phone);
+    if(chk.error)return Promise.resolve({ok:false,code:'invalid_phone',message:chk.error,field:'phone'});
+    if(!fields.consentPersonal)return Promise.resolve({ok:false,code:'consent_required',message:'Для отправки нужно согласие на обработку персональных данных',field:'consent'});
+    var attr=attribution();
+    var utm={};
+    ['source','medium','campaign','content','term'].forEach(function(k){if(attr['utm_'+k])utm[k]=attr['utm_'+k];});
+    var body={
+      lead_key:inlineKey(chk.value),
+      phone:chk.value,
+      page:currentPage(),
+      consent_personal:true,
+      consent_ads:!!fields.consentAds,
+      elapsed_ms:Math.max(0,Date.now()-(inlineState.openedAt||Date.now())),
+      company:(fields.company||'').slice(0,256),
+      utm:utm,
+      yclid:attr.yclid||'',
+      referrer:attr.referrer||'',
+      doc_versions:DOC_VERSIONS
+    };
+    var ctrl=('AbortController' in window)?new AbortController():null;
+    var timer=ctrl?window.setTimeout(function(){ctrl.abort();},REQUEST_TIMEOUT_MS):null;
+    return fetch(ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      credentials:'omit',
+      body:JSON.stringify(body),
+      signal:ctrl?ctrl.signal:undefined
+    }).then(function(res){
+      if(timer)window.clearTimeout(timer);
+      return res.json().catch(function(){return null;}).then(function(json){return {status:res.status,json:json,leadKey:body.lead_key};});
+    },function(err){
+      if(timer)window.clearTimeout(timer);
+      throw err;
+    }).then(function(r){
+      var j=r.json;
+      if(r.status===200&&j&&j.ok===true){
+        if(j.duplicate!==true)inlineGoal(r.leadKey);
+        /* Успешная заявка из любой точки сайта навсегда подавляет exit-popup. */
+        try{window.localStorage.setItem('anisen_lead_sent','1');}catch(e){}
+        return {ok:true,duplicate:j.duplicate===true};
+      }
+      var code=j&&j.code;
+      var msg=j&&j.message;
+      if(code==='invalid_phone')return {ok:false,code:code,message:msg||'Проверьте номер телефона',field:'phone'};
+      if(code==='consent_required')return {ok:false,code:code,message:msg||'Нужно согласие на обработку персональных данных',field:'consent'};
+      if(code==='too_fast'||code==='rate_limited')return {ok:false,code:code,message:msg||'Слишком быстро. Попробуйте ещё раз через минуту'};
+      if(code==='disabled'||code==='unauthorized')return {ok:false,code:code,message:MSG_DISABLED};
+      return {ok:false,code:code||'server',message:msg||MSG_SERVER};
+    },function(){
+      return {ok:false,code:'network',message:MSG_SERVER};
+    });
+  }
+
   /* Публичный API: open({source:'exit-intent'}) — открытие формы с внешним
-     источником (использует exit-popup). Телефон и токен не передаются. */
+     источником (использует exit-popup). Телефон и токен не передаются.
+     submitInline(fields) — отправка из встраиваемой формы контактного блока. */
   window.CallbackWidget={open:function(opts){
     if(opts&&typeof opts.source==='string'&&opts.source)state.source=opts.source.slice(0,32);
     openForm();
-  }};
+  },submitInline:submitInline};
 
   function start(){
     if(document.querySelector('.cbw'))return;
+    inlineState.openedAt=Date.now();
     var link=document.createElement('link');
     link.rel='stylesheet';
     link.href=new URL('callback-widget.css?v=3',SELF_SRC||location.href).href;
