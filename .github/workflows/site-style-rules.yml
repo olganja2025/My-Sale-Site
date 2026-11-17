@@ -116,6 +116,9 @@ jobs:
           # Safety checks.
           em_dash = []
           max_hits = []
+          # MAX - легитимное название мессенджера: подпись кнопки в messenger-contact.js
+          # и перечень каналов связи в политике. Правило ловит MAX только вне этих файлов.
+          max_allowed = ('messenger-contact.js', 'privacy-policy/index.html')
           bad_cta = []
           for pattern in ('*.html', '*.js', '*.css'):
               for path in root.rglob(pattern):
@@ -124,7 +127,7 @@ jobs:
                   text = path.read_text(encoding='utf-8')
                   if '—' in text:
                       em_dash.append(str(path))
-                  if pattern in ('*.html', '*.js') and re.search(r'(?<![A-Za-zА-Яа-я])MAX(?![A-Za-zА-Яа-я])', text):
+                  if pattern in ('*.html', '*.js') and str(path) not in max_allowed and re.search(r'(?<![A-Za-zА-Яа-я])MAX(?![A-Za-zА-Яа-я])', text):
                       max_hits.append(str(path))
                   if pattern == '*.html':
                       for m in re.finditer(r'<a\b([^>]*class="[^"]*button[^"]*"[^>]*)>', text, flags=re.I):
