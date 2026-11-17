@@ -8,7 +8,7 @@
   var ENDPOINT='/api/lead/';
   var METRIKA_ID=112515743;
   var REQUEST_TIMEOUT_MS=15000;
-  var DOC_VERSIONS={personal_data:'v1',advertising:'v1'};
+  var DOC_VERSIONS={personal_data:'2026-11-17',advertising:'2026-11-17'};
   var HREF_PRIVACY='/privacy-policy/';
   var HREF_PERSONAL='/personal-data-consent/';
   var HREF_ADS='/advertising-consent/';
