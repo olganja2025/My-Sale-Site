@@ -17,6 +17,7 @@ document.querySelectorAll('[data-anisen-contact]').forEach((root)=>{
   const contactTitle=root.dataset.contactTitle||'Обсудить проект';
   const privacyHref=root.dataset.privacyHref||'privacy-policy/';
   const consentHref=root.dataset.consentHref||'personal-data-consent/';
+  const adsHref=root.dataset.adsHref||'advertising-consent/';
   const links=ANISEN_MESSENGERS.map(({key,label,icon})=>{
     const url=ANISEN_MESSENGER_URLS[key];
     const content=`<span class="messenger-link-icon">${icon}</span><span>${label}</span>`;
@@ -27,17 +28,69 @@ document.querySelectorAll('[data-anisen-contact]').forEach((root)=>{
 
   const phoneLink=`<a class="messenger-link" href="${ANISEN_PHONE_URL}"><span class="messenger-link-icon">${ANISEN_PHONE_ICON}</span><span>Позвонить</span></a>`;
 
-  const callbackButton=`<button class="messenger-callback" type="button"><span class="messenger-link-icon">${ANISEN_PHONE_ICON}</span><span>Заказать обратный звонок</span></button>`;
+  /* Встраиваемая форма: отправка через CallbackWidget.submitInline — те же проверки,
+     согласия, защита от дублей, /api/lead/ и цель lead_callback_<страница>. */
+  root.innerHTML=`<div class="messenger-contact-head"><h3>${contactTitle}</h3><p>Напишите удобным способом</p></div><div class="messenger-links">${links}${phoneLink}</div><div class="messenger-inline"><div class="messenger-inline-sep" role="separator"><span>или оставьте номер – перезвоню</span></div><form class="messenger-inline-form" novalidate autocomplete="off"><div class="messenger-inline-alert" role="alert" hidden></div><input class="messenger-inline-phone" type="tel" name="phone" inputmode="tel" autocomplete="tel" maxlength="18" placeholder="+7 (929) 123-45-67" aria-label="Номер телефона"><p class="messenger-inline-error" role="alert" hidden></p><label class="messenger-inline-check"><input type="checkbox" name="consent_personal"><span>Даю <a href="${consentHref}" target="_blank" rel="noopener noreferrer">Согласие на обработку персональных данных</a> и ознакомлен(а) с <a href="${privacyHref}" target="_blank" rel="noopener noreferrer">Политикой в отношении обработки персональных данных</a></span></label><p class="messenger-inline-error messenger-inline-consent-error" role="alert" hidden></p><label class="messenger-inline-check"><input type="checkbox" name="consent_ads"><span>Даю <a href="${adsHref}" target="_blank" rel="noopener noreferrer">Согласие на получение рекламных и информационных сообщений</a></span></label><div class="messenger-inline-trap" aria-hidden="true"><label>Компания<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div><button type="submit" class="messenger-inline-submit">Перезвоните мне</button></form><p class="messenger-inline-success" hidden>Заявка принята. Я перезвоню вам по указанному номеру.</p></div><p class="messenger-legal">Нажимая кнопку, вы подтверждаете, что ознакомились с <a href="${privacyHref}">Политикой в отношении обработки персональных данных</a> и даёте <a href="${consentHref}">Согласие на обработку персональных данных</a>.</p>`;
 
-  root.innerHTML=`<div class="messenger-contact-head"><h3>${contactTitle}</h3><p>Напишите удобным способом</p></div><div class="messenger-links">${links}${phoneLink}</div>${callbackButton}<p class="messenger-legal">Нажимая кнопку, вы подтверждаете, что ознакомились с <a href="${privacyHref}">Политикой в отношении обработки персональных данных</a> и даёте <a href="${consentHref}">Согласие на обработку персональных данных</a>.</p>`;
+  /* Российская маска: +7 (929) 123-45-67. Правила приёма номера проверяет CallbackWidget. */
+  function maskRuPhone(raw){
+    let d=String(raw||'').replace(/\D/g,'');
+    if(!d)return '';
+    if(d.charAt(0)==='8')d='7'+d.slice(1);
+    if(d.charAt(0)!=='7')d='7'+d;
+    d=d.slice(0,11);
+    let out='+7';
+    if(d.length>1)out+=' ('+d.slice(1,4);
+    if(d.length>=5)out+=')';
+    if(d.length>4)out+=' '+d.slice(4,7);
+    if(d.length>7)out+='-'+d.slice(7,9);
+    if(d.length>9)out+='-'+d.slice(9,11);
+    return out;
+  }
 
-  /* Кнопка открывает единую форму обратного звонка (CallbackWidget).
-     Источник не передаётся: заявка из блока учитывается штатной целью страницы lead_callback_<page>. */
-  const callbackBtn=root.querySelector('.messenger-callback');
-  if(callbackBtn)callbackBtn.addEventListener('click',()=>{
-    if(window.CallbackWidget&&typeof window.CallbackWidget.open==='function'){
-      window.CallbackWidget.open({});
+  const inlineForm=root.querySelector('.messenger-inline-form');
+  const inlineSuccess=root.querySelector('.messenger-inline-success');
+  const phoneField=inlineForm.elements.phone;
+  const phoneErr=root.querySelector('.messenger-inline-error:not(.messenger-inline-consent-error)');
+  const consentErr=root.querySelector('.messenger-inline-consent-error');
+  const alertErr=root.querySelector('.messenger-inline-alert');
+  const submitBtn=inlineForm.querySelector('.messenger-inline-submit');
+  const trapField=inlineForm.elements.company;
+
+  phoneField.addEventListener('input',()=>{phoneField.value=maskRuPhone(phoneField.value);phoneErr.hidden=true;});
+  inlineForm.elements.consent_personal.addEventListener('change',()=>{if(inlineForm.elements.consent_personal.checked)consentErr.hidden=true;});
+
+  inlineForm.addEventListener('submit',(ev)=>{
+    ev.preventDefault();
+    if(!window.CallbackWidget||typeof window.CallbackWidget.submitInline!=='function'){
+      alertErr.textContent='Не удалось отправить заявку. Напишите мне в мессенджер.';
+      alertErr.hidden=false;
+      return;
     }
+    if(submitBtn.disabled)return;
+    phoneErr.hidden=true;
+    consentErr.hidden=true;
+    alertErr.hidden=true;
+    submitBtn.disabled=true;
+    submitBtn.textContent='Отправляю';
+    window.CallbackWidget.submitInline({
+      phone:phoneField.value,
+      consentPersonal:inlineForm.elements.consent_personal.checked,
+      consentAds:inlineForm.elements.consent_ads.checked,
+      company:trapField.value
+    }).then((r)=>{
+      if(r.ok){
+        inlineForm.hidden=true;
+        inlineSuccess.hidden=false;
+        return;
+      }
+      if(r.field==='phone'){phoneErr.textContent=r.message;phoneErr.hidden=false;}
+      else if(r.field==='consent'){consentErr.textContent=r.message;consentErr.hidden=false;}
+      else{alertErr.textContent=r.message;alertErr.hidden=false;}
+    }).finally(()=>{
+      submitBtn.disabled=false;
+      submitBtn.textContent='Перезвоните мне';
+    });
   });
 });
 
