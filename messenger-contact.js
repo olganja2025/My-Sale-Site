@@ -27,7 +27,18 @@ document.querySelectorAll('[data-anisen-contact]').forEach((root)=>{
 
   const phoneLink=`<a class="messenger-link" href="${ANISEN_PHONE_URL}"><span class="messenger-link-icon">${ANISEN_PHONE_ICON}</span><span>Позвонить</span></a>`;
 
-  root.innerHTML=`<div class="messenger-contact-head"><h3>${contactTitle}</h3><p>Напишите удобным способом</p></div><div class="messenger-links">${links}${phoneLink}</div><p class="messenger-legal">Нажимая кнопку, вы подтверждаете, что ознакомились с <a href="${privacyHref}">Политикой в отношении обработки персональных данных</a> и даёте <a href="${consentHref}">Согласие на обработку персональных данных</a>.</p>`;
+  const callbackButton=`<button class="messenger-callback" type="button"><span class="messenger-link-icon">${ANISEN_PHONE_ICON}</span><span>Заказать обратный звонок</span></button>`;
+
+  root.innerHTML=`<div class="messenger-contact-head"><h3>${contactTitle}</h3><p>Напишите удобным способом</p></div><div class="messenger-links">${links}${phoneLink}</div>${callbackButton}<p class="messenger-legal">Нажимая кнопку, вы подтверждаете, что ознакомились с <a href="${privacyHref}">Политикой в отношении обработки персональных данных</a> и даёте <a href="${consentHref}">Согласие на обработку персональных данных</a>.</p>`;
+
+  /* Кнопка открывает единую форму обратного звонка (CallbackWidget).
+     Источник не передаётся: заявка из блока учитывается штатной целью страницы lead_callback_<page>. */
+  const callbackBtn=root.querySelector('.messenger-callback');
+  if(callbackBtn)callbackBtn.addEventListener('click',()=>{
+    if(window.CallbackWidget&&typeof window.CallbackWidget.open==='function'){
+      window.CallbackWidget.open({});
+    }
+  });
 });
 
 document.querySelectorAll('[data-anisen-footer-contacts]').forEach((contacts)=>{
